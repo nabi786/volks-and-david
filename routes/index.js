@@ -2,11 +2,18 @@ require('../module/mongoose')
 var express = require('express');
 var router = express.Router();
 var customerModel = require('../module/create-customer');
-var invoiceList = require('../module/generate-invoice')
+var invoiceList = require('../module/generate-invoice');
+var jwt = require('jsonwebtoken')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index');
+  
+  var cookeData = req.cookies.jwt;
+  if(cookeData){
+    res.render('index');
+  }else{
+    res.redirect('login')
+  }
 });
 
 
@@ -51,5 +58,13 @@ router.get('/searchCustomers', async function(req,res){
       
   }
 });
+
+
+
+
+
+
+
+ 
 
 module.exports = router;

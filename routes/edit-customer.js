@@ -7,13 +7,20 @@ var customerModel = require('../module/create-customer');
 router.get('/:id', async function (req, res, next) {
     try {
 
+        // finding cookies 
+        var cookeData = req.cookies.jwt
+
         var userID = req.params.id;
         console.log(userID)
         customerModel.findOne({_id : userID}).exec(function(err,data){
             if(err) throw err
 
             
-            res.render('edit-customer', {customer : data});
+            if(cookeData){
+                res.render('edit-customer', {customer : data});
+            }else{
+                res.redirect('login')
+            }
         })
 
     } catch (error) {

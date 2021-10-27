@@ -6,7 +6,13 @@ var customerModel = require('../module/create-customer');
 
 router.get('/', async function (req, res, next) {
     try {
-        res.render('create-customer', {errMsg : ""});
+
+        var cookeData = req.cookies.jwt;
+        if(cookeData){
+            res.render('create-customer', {errMsg : ""});
+        }else{
+            res.redirect('login')
+        }
     } catch (error) {
         res.send(error)
     }

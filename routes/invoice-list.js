@@ -7,6 +7,8 @@ var customersModel = require('../module/create-customer');
 router.get('/', async function (req, res, next) {
 
     try {  
+        // finding cookies 
+        var cookeData = req.cookies.jwt
 
         var invoiceData = await invoiceModel.find();
         var invoiceData = invoiceData.reverse();
@@ -27,7 +29,12 @@ router.get('/', async function (req, res, next) {
 
 
             var customers = data;
-            res.render('invoice-list', {invoiceData : invoiceData, links : links, customers : customers})
+            if(cookeData){
+
+                res.render('invoice-list', {invoiceData : invoiceData, links : links, customers : customers})
+            }else{
+                res.redirect('login')
+            }
         })
         
 

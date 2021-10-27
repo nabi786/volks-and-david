@@ -19,6 +19,10 @@
 
     <link rel="stylesheet" type="text/css" href="/assets/css/register.css">
 
+
+    <!-- jquery link -->
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
 </head>
 
 <body id="body">
@@ -29,31 +33,35 @@
 
         <div class="formBox">
             <h1>Singup</h1>
+            
             <form method="POST" accept="/signup" class="form" autocomplete="off">
                 <div class="row">
                     <div class="col-sm-12 col-lg-6 col-md-6 inputFieldBox">
-                        <label>First Name <span class="importantField">*</span></label>
-                        <input type="text" name="fname" placeholder="first name">
+                        <label>First Name <span class="importantField" >*</span></label>
+                        <input type="text" name="fname" placeholder="first name" required>
                     </div>
                     <div class="col-sm-12 col-lg-6 col-md-6 inputFieldBox">
                         <label>Last Name <span class="importantField">*</span></label>
-                        <input type="text" name="lname" placeholder="first name">
+                        <input type="text" name="lname" placeholder="first name" required>
                     </div>
                     <div class="col-sm-12 col-lg-6 col-md-6  inputFieldBox">
                         <label>Email <span class="importantField">*</span></label>
-                        <input type="text" name="email" placeholder="email">
+                        <input type="email" name="email" placeholder="email" required>
+                        <%if(emailExist){%>
+                            <span style="font-size: 13px; color: red;"><%=emailExist%></span>
+                            <%}%>
                     </div>
                     <div class="col-sm-12 col-lg-6 col-md-6  inputFieldBox">
                         <label>Phone Number <span class="importantField">*</span></label>
-                        <input type="text" name="phnNumber" placeholder="phone number">
+                        <input type="number" name="phnNumber" placeholder="phone number" class="InputTypeNumber" required>
                     </div>
                     <div class="col-sm-12 col-lg-6 col-md-6  inputFieldBox">
                         <label>Password <span class="importantField">*</span></label>
-                        <input type="password" name="password" placeholder="password">
+                        <input type="password" name="password" placeholder="password" required>
                     </div>
                     <div class="col-sm-12 col-lg-6 col-md-6  inputFieldBox">
                         <label>Confirm Password <span class="importantField">*</span></label>
-                        <input type="password" name="confirmPassword" placeholder="confrim password">
+                        <input type="password" name="confirmPassword" placeholder="confrim password" required>
                     </div>
                 </div>
                 <%if(passworderr){%>
@@ -61,6 +69,7 @@
                         <%=passworderr%>
                     </span>
                     <%}%>
+                 
                         <div class="submitFormBtn">
                             <input type="submit" value="SIGN UP">
                         </div>
@@ -71,5 +80,23 @@
 
     </section>
 </body>
+
+<!-- Jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Owl Carousel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+
+<!-- Slick slider JS -->
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="./assets/js/index.js"></script>
+
+
+    <script>
+
+
+
+    </script>
+
 
 </html>

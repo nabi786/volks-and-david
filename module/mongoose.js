@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
-var db = 'mongodb+srv://volkanddavid:davidvolksAnd55998@cluster0.mltjp.mongodb.net/vloks_and_david?retryWrites=true&w=majority'
-mongoose.connect(db,
+var dotenv = require('dotenv');
+
+// getting path of dotenv file
+dotenv.config({path : "./config.env"})
+
+
+mongoose.connect(process.env.DATABSE,
 {
     useNewUrlParser: true,
     useFindAndModify: false,

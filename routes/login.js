@@ -4,11 +4,20 @@ var router = express.Router();
 var userModel = require('../module/userSign-up');
 var bcrypt = require('bcrypt');
 const app = require('../app');
+const jwt = require('jsonwebtoken');
+
+
 
 router.get('/', function (req, res, next) {
-
-    res.render('login', { errMsg: "" })
+    var cookieData = req.cookies.jwt;
+    if(cookieData){
+        res.redirect('/')
+    }else{
+        res.render('login', { errMsg: "" })
+    }
 });
+
+
 
 
 
@@ -23,17 +32,25 @@ router.post('/', async function (req, res, next) {
 
             
             var isMatch = bcrypt.compareSync(password, userData.password);
+            
             if (isMatch == true) {
                 
+                
+                const token = jwt.sign({ id: userData._id }, process.env.SECRETKEY);
+                const userVarify =  jwt.verify(token, process.env.SECRETKEY);
+                res.cookie('jwt',userData._id,{
+                    httpOnly : true,
+                  });
+
                 res.redirect('/')
             } else {
                
-                res.redirect('login')
+                res.render('login', { errMsg: "invalid email or passowrd" })
             }
             
         }else{
             
-            res.redirect('login')
+            res.render('login', { errMsg: "invalid email or passowrd" })
         }
 
 

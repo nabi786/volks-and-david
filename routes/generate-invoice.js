@@ -9,13 +9,21 @@ router.get('/', async function (req, res, next) {
 
   try {
 
-    
-    customersModel.find().exec(function(err,data){
-      if(err) throw err;
-      
-      var customerList = data
-      res.render('generate-invoice',{userDetial : "", customerList : customerList});
-    })
+    // searching cookie data
+    var cookeData = req.cookies.jwt;
+
+
+    customersModel.find().exec(function (err, data) {
+      if (err) throw err;
+
+      var customerList = data;
+
+      if (cookeData) {
+        res.render('generate-invoice', { userDetial: "", customerList: customerList });
+      } else {
+        res.redirect('login')
+      }
+  })
 
 
   } catch (error) {
@@ -73,12 +81,12 @@ router.get('/:id', async function (req, res, next) {
 
     var userID = req.params.id;
 
-    var userDetial = await customersModel.findOne({_id : userID});
+    var userDetial = await customersModel.findOne({ _id: userID });
     var customerList = await customersModel.find();
     console.log(customerList)
-    res.render('generate-invoice',{userDetial : userDetial, customerList : customerList});
+    res.render('generate-invoice', { userDetial: userDetial, customerList: customerList });
   } catch (error) {
-    
+
   }
 
 })

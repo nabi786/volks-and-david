@@ -1,3 +1,4 @@
+require('dotenv')
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -7,6 +8,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/login');
 var signupRouter = require('./routes/signup');
+var logoutRouter = require('./routes/logout')
 var customerRouter = require('./routes/customer');
 var createCustomer = require('./routes/create-customer');
 var editCustomer = require('./routes/edit-customer');
@@ -17,7 +19,7 @@ var invoiceList = require('./routes/invoice-list');
 var multer = require('multer')
 var bodyParser = require("body-parser");
 var logoSchema = require("./module/logo")
-
+var notification = require('./routes/notification')
 
 
 
@@ -41,6 +43,8 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use('/', indexRouter);
 app.use('/login', usersRouter);
 app.use('/signup', signupRouter);
+app.use('/logout', logoutRouter);
+
 app.use('/customers', customerRouter);
 app.use('/create-customer', createCustomer);
 app.use('/edit-customer', editCustomer);
@@ -48,6 +52,8 @@ app.use('/delete-customer', dltCustomer);
 app.use('/invoice', invoice);
 app.use('/generate-invoice', generateInvoice);
 app.use('/invoice-list', invoiceList);
+app.use('/notification', notification);
+
 
 
 
@@ -66,6 +72,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render(err);
 });
+
+
+
+
+
+
 
 
 module.exports = app;
