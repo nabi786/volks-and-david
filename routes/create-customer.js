@@ -2,14 +2,15 @@ require('../module/mongoose')
 var express = require('express');
 var router = express.Router();
 var customerModel = require('../module/create-customer');
-
+var userModel = require('../module/userSign-up');
 
 router.get('/', async function (req, res, next) {
     try {
 
         var cookeData = req.cookies.jwt;
         if(cookeData){
-            res.render('create-customer', {errMsg : ""});
+            var currentUser = await userModel.findOne({_id : cookeData})
+            res.render('create-customer', {errMsg : "",currentUser : currentUser});
         }else{
             res.redirect('login')
         }

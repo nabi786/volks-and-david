@@ -2,6 +2,9 @@ require('../module/mongoose')
 var express = require('express');
 var router = express.Router();
 var customerModel = require('../module/create-customer');
+var userModel = require('../module/userSign-up')
+
+
 
 router.get('/', async function (req, res, next) {
 
@@ -15,7 +18,12 @@ router.get('/', async function (req, res, next) {
             customers = customers.reverse();
 
             if(cookeData){
-                res.render('customers',{customersList : customers});
+
+                var currentUser = await userModel.findOne({_id : cookeData});
+                
+                res.render('customers',{customersList : customers, currentUser : currentUser});
+
+
             }else{
                 res.redirect('login')
             }

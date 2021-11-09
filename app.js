@@ -5,6 +5,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+// pages routers
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/login');
 var signupRouter = require('./routes/signup');
@@ -20,15 +22,14 @@ var multer = require('multer')
 var bodyParser = require("body-parser");
 var logoSchema = require("./module/logo")
 var notification = require('./routes/notification')
-
-
-
-
+var userPageRouter = require('./routes/create-user')
+var users = require('./routes/usersList')
+var editUser = require('./routes/edit-user')
+var deleteUser = require('./routes/delete-user')
 
 
 
 var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -44,7 +45,6 @@ app.use('/', indexRouter);
 app.use('/login', usersRouter);
 app.use('/signup', signupRouter);
 app.use('/logout', logoutRouter);
-
 app.use('/customers', customerRouter);
 app.use('/create-customer', createCustomer);
 app.use('/edit-customer', editCustomer);
@@ -52,9 +52,10 @@ app.use('/delete-customer', dltCustomer);
 app.use('/invoice', invoice);
 app.use('/generate-invoice', generateInvoice);
 app.use('/invoice-list', invoiceList);
-app.use('/notification', notification);
-
-
+app.use('/create-user', userPageRouter);
+app.use('/users-list', users)
+app.use('/edit-user',editUser)
+app.use('/delete-user', deleteUser)
 
 
 // catch 404 and forward to error handler
@@ -70,7 +71,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render(err);
+  res.send(err);
 });
 
 

@@ -51,14 +51,14 @@
 
                         <div class="notificationBoxHeader">
                             <span class="headerTitle">
-                                Customers
+                                Users List
                             </span>
 
 
                             <div class="MainBoxHeaderButtons">
                                 <!-- <input type="search" class="searchByEmail" placeholder="filter by email"> -->
-                                <a href="/create-customer" class="addNewCustomerBtn">
-                                    New
+                                <a href="/create-user" class="addNewCustomerBtn">
+                                    Create
                                 </a>
                                 <a href="/customers" class="addNewCustomerBtn">
                                     Refresh <i class="fas fa-redo"></i>
@@ -76,6 +76,9 @@
 
                                     <tr>
                                         <th>
+                                            No
+                                        </th>
+                                        <th>
                                             Name
                                         </th>
                                         <th>
@@ -85,56 +88,43 @@
                                             Phone
                                         </th>
                                         <th>
-                                            Billing Address
+                                            password
                                         </th>
                                         <th>
-                                            Joined
-                                        </th>
-
-                                        <th>
-                                            invoice
-                                        </th>
-                                        <th>
-
+                                            Edit
                                         </th>
                                     </tr>
                                 </thead>
 
                                 <tbody class="tableBody">
 
-                                    <%for(x=0; x < customersList.length; x++){%>
-                                        <tr class="customerTableRow">
+
+                                    <%for(x=0; x < userslist.length; x++){%>
+                                        <tr>
                                             <td>
-                                                <%=customersList[x].name%>
+                                                <%=x+1%>
                                             </td>
                                             <td>
-                                                <%=customersList[x].email%>
+                                                <%=userslist[x].firstname%>
                                             </td>
                                             <td>
-                                                <%=customersList[x].phone%>
+                                                <%=userslist[x].email%>
                                             </td>
                                             <td>
-                                                <%=customersList[x].Address%>
+                                                <%=userslist[x].phone%>
                                             </td>
                                             <td>
-                                                <%=customersList[x].join%>
+                                                <%=userslist[x].password%>
                                             </td>
-                                            <td>
-                                                <a href="/generate-invoice/<%=customersList[x].id%>">
-                                                    Create
-                                                </a>
-                                            </td>
-                                            <%if(currentUser.userType == "Admin"){%>
                                             <td class="crudBtn">
-                                                <a href="/edit-customer/<%=customersList[x].id%>">
+                                                <a href="/edit-user/<%=userslist[x]._id%>">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                               
-                                                <a href="/delete-customer/<%=customersList[x].id%>">
+                                                <br>
+                                                <a href="/delete-user/<%=userslist[x]._id%>">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </a>
                                             </td>
-                                            <%}%>
                                         </tr>
                                         <%}%>
 
@@ -178,73 +168,7 @@
 
 
 <!-- manul scrpit -->
-<script>
-    $(document).ready(function () {
-        $('.searchCustomerBtn').click(function () {
 
-            var searchValue = $('.customerSearchInputFiled').val();
-            searchValue = searchValue.toUpperCase();
-            
-            var tableBody = document.getElementsByClassName('tableBody')[0]
-
-            $.ajax({
-                type: 'GET',
-                url: "/searchCustomers",
-                success: function (data) {
-
-                    var customersData = data.customersData;
-                    var html = "";
-                    customersData.forEach(function (item, index) {
-
-                        var name = item.name;
-                        var name = name.toUpperCase();
-                        if (name.includes(searchValue)) {
-                            html += `<tr class="customerTableRow">
-                                            <td>
-                                                 ${item.name}
-                                            </td>
-                                            <td>
-                                                
-                                                ${item.email}
-                                            </td>
-                                            <td>
-                                               
-                                                ${item.phone}
-                                            </td>
-                                            <td>
-                                                
-                                                ${item.Address}
-                                            </td>
-                                            <td>
-                                                
-                                                ${item.join}
-                                            </td>
-                                            <td>
-                                                <a href="/generate-invoice/${item._id}">
-                                                    Create
-                                                </a>
-                                            </td>
-                                            <td class="crudBtn">
-                                                <a href="/edit-customer/${item._id}">
-                                                    <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="/delete-customer/${item._id}">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </a>
-                                            </td>
-                                        </tr>`
-                                        console.log(item)
-                                    }
-                                    tableBody.innerHTML = html
-
-
-                    })
-
-                }
-            });
-        })
-    })
-</script>
 
 
 </html>

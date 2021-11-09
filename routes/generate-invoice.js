@@ -3,6 +3,8 @@ var express = require('express');
 var router = express.Router();
 var generateInvoice = require('../module/generate-invoice');
 var customersModel = require('../module/create-customer');
+var userModel = require('../module/userSign-up');
+
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
@@ -12,23 +14,35 @@ router.get('/', async function (req, res, next) {
     // searching cookie data
     var cookeData = req.cookies.jwt;
 
+    customersModel.find().exec(async function (err, data) {
+      try {
 
-    customersModel.find().exec(function (err, data) {
-      if (err) throw err;
 
-      var customerList = data;
+        if (err) throw err;
 
-      if (cookeData) {
-        res.render('generate-invoice', { userDetial: "", customerList: customerList });
-      } else {
-        res.redirect('login')
+        var customerList = data;
+
+        if (cookeData) {
+
+          var currentUser = await userModel.findOne({ _id: cookeData });
+
+          res.render('generate-invoice', { userDetial: "", customerList: customerList, currentUser: currentUser });
+
+
+        } else {
+          res.redirect('login')
+        }
+      } catch (error) {
+
       }
-  })
+    })
 
 
   } catch (error) {
     console.log(error)
   }
+
+
 });
 
 router.post('/', async function (req, res, next) {
@@ -39,9 +53,12 @@ router.post('/', async function (req, res, next) {
     var data = req.body.obj;
     data = JSON.parse(data);
 
-
+    var cookeData = req.cookies.jwt;
+    var currentUser = await userModel.find({_id : cookeData})
+    
 
     var generatedInvoice = new generateInvoice({
+      userID : `${currentUser[0].userID}`,
       Name: data.name,
       Address: data.address,
       Email: data.email,
@@ -62,7 +79,8 @@ router.post('/', async function (req, res, next) {
 
     generatedInvoice.save().exec(function (err, data) {
       if (err) throw err;
-      console.log('invoice has been generated')
+      
+      res.redirect('/invoice-list')
     })
 
 
@@ -83,8 +101,13 @@ router.get('/:id', async function (req, res, next) {
 
     var userDetial = await customersModel.findOne({ _id: userID });
     var customerList = await customersModel.find();
-    console.log(customerList)
-    res.render('generate-invoice', { userDetial: userDetial, customerList: customerList });
+    
+
+    var currentUser = await userModel.findOne({_id : req.cookies.jwt})
+      // console.log(currentUser)
+    res.render('generate-invoice', { userDetial: userDetial, customerList: customerList, currentUser : currentUser});
+    
+
   } catch (error) {
 
   }

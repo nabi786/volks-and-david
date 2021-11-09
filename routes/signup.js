@@ -16,7 +16,7 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 
 
 
-var newDate = new Date();
+var newDate = new Date().toLocaleDateString();
 
 
 router.get('/', function (req, res, next) {
@@ -43,16 +43,23 @@ router.post('/', async function (req, res, next) {
     var password = req.body.password;
     var cpassword = req.body.confirmPassword;
 
+
+    // getting length of accounts
+    var accounts = await usersModel.find()
+    var accountLength = accounts.length;
+
     if (password == cpassword) {
       password = bcrypt.hashSync(password, 10);
       var userData = new usersModel({
+        userID : `${accountLength+1}`,
+        userType : "Admin",
         firstname: fname,
         lastname: lname,
         email: email,
         phone: phnNumber,
         password: password,
         date: newDate,
-      })
+      });
 
 
 

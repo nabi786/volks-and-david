@@ -1197,6 +1197,17 @@ form{
     margin-left: auto;
 }
 
+.customerTableBox{
+    min-height: 50px;
+    max-height: 500px;
+    overflow: auto;
+}
+
+.currentUserName{
+    /* border: 1px solid red; */
+    margin-left: auto;
+
+}
 
 
 

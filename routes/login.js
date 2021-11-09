@@ -10,9 +10,9 @@ const jwt = require('jsonwebtoken');
 
 router.get('/', function (req, res, next) {
     var cookieData = req.cookies.jwt;
-    if(cookieData){
+    if (cookieData) {
         res.redirect('/')
-    }else{
+    } else {
         res.render('login', { errMsg: "" })
     }
 });
@@ -28,28 +28,33 @@ router.post('/', async function (req, res, next) {
         var password = req.body.password;
         var userData = await userModel.findOne({ email: email })
 
-        if(userData){
+        if (userData) {
 
-            
-            var isMatch = bcrypt.compareSync(password, userData.password);
-            
+            if (userData.userType == "Admin") {
+                var isMatch = bcrypt.compareSync(password, userData.password);
+            } else {
+                if (password == userData.password) {
+                    var isMatch = true;
+                }
+            }
+
             if (isMatch == true) {
-                
-                
+
+
                 const token = jwt.sign({ id: userData._id }, process.env.SECRETKEY);
-                const userVarify =  jwt.verify(token, process.env.SECRETKEY);
-                res.cookie('jwt',userData._id,{
-                    httpOnly : true,
-                  });
+                const userVarify = jwt.verify(token, process.env.SECRETKEY);
+                res.cookie('jwt', userData._id, {
+                    httpOnly: true,
+                });
 
                 res.redirect('/')
             } else {
-               
+
                 res.render('login', { errMsg: "invalid email or passowrd" })
             }
-            
-        }else{
-            
+
+        } else {
+
             res.render('login', { errMsg: "invalid email or passowrd" })
         }
 

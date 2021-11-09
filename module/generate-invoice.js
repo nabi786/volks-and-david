@@ -1,7 +1,11 @@
 var mongoose = require('./mongoose');
 
 var generateInvoice = new mongoose.Schema({
-
+    userID : {
+        type : String,
+        required : true,
+        unique :false
+    },
     Name : {
         type : String,
         required : true,
