@@ -52,6 +52,7 @@ body{
 .headerItems{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     /* border: 1px solid red; */
     width: 100%;
 }
@@ -62,7 +63,7 @@ body{
     justify-content: space-between;
     padding: 12px 0px;
     /* border: 1px solid red; */
-    width: 25%;
+   
 }
 
 
@@ -72,7 +73,6 @@ body{
     padding: 12px 0px;
     align-items: center;
     /* border: 1px solid red; */
-    width: 75%;
  
 }
 
@@ -100,7 +100,6 @@ body{
     /* border: 1px solid red; */
     display: flex;
     align-items: center;
-    width: 150px;
     justify-content: space-between;
     position: relative;
 }
@@ -238,7 +237,7 @@ body{
 }
 
 
-.menuBtn{
+.headerLogoAndImg{
     display: none;
 }
 .menuBtn i{
@@ -1103,20 +1102,39 @@ form{
 
 
 
-.generateInvoiceTable table{
-    width: 100%;
-    border: 1px solid lightgray;
-}
+
 .generateTableHead{
     background-color: var(--main-HoverColor);
     color: white;  
-  
 }
 
-.generateTableHead tr th{
-    font-weight: normal;
+
+.tableDiv{
+    /* border: 1px solid red; */
+    display: flex;
+    height: 300px;
+    border: 1px solid lightgray;
+}
+.generateTableHead{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 100px;
+}
+.generateTableHead h6{
+    margin: 0px;
+    font-size: 15px;
     text-align: center;
-    padding: 6px 0px;
+}
+.generateTableBody{
+    /* border: 1px solid red; */
+    flex-grow: 1;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .generateTableBody tr{
@@ -1143,15 +1161,7 @@ form{
 
 
 
-.generateTableBody tr td input{
-    /* border: none; */
-    /* border-left: 1px solid lightgray; */
-    /* border-right: 1px solid lightgray; */
-    margin: 4px 0px;
-}
-.generateTableBody tr td input:focus{
-    outline: none;
-}
+
 .generateInviceBtn{
     background-color: var(--main-HoverColor);
     color: white;
@@ -1210,6 +1220,28 @@ form{
 }
 
 
+.errPage{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* border: 1px solid red; */
+    width: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.errPage a{
+    background-color: dodgerblue;
+    padding: 6px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+
 
 
 
@@ -1224,7 +1256,7 @@ form{
 
 /* RESPONSIVE SETTING */
 @media only screen and (max-width:900px){
-    .menuBtn{
+    .headerLogoAndImg{
         display: block;
         cursor: pointer;
     }
@@ -1258,9 +1290,7 @@ form{
     .SearchBox{
         display: none;
     }
-  .headerLogoAndImg{
-      width: 100%;
-  }
+
 }
 
 
@@ -1281,7 +1311,7 @@ form{
 
 
 
-/* listing page responsive */
+    /* listing page responsive */
     /* Bux */
     .productsBox{
         flex-direction: column;
@@ -1296,20 +1326,15 @@ form{
     }
 
 
-
-
-
-    /* generate invoice  */
-    .generateInvoiceTable {
-        /* border: 1px solid red; */
+    .generateInvoiceSecondTable{
+        border: 1px solid lightgray;
         width: 100%;
-        overflow-x: scroll;
+        overflow: scroll;
     }
-    .generateInvoiceTable table{
-        /* border: 1px solid red; */
-        width: 800px;
+    .generateInvoiceSecondTable table{
+        width: 500px;
+        padding: 6px;
     }
-
 
 }
 
@@ -1320,13 +1345,8 @@ form{
     .headerItems{
         padding: 4px 12px;
     }
-    .headerUserProfileDetials{
-        /* border: 1px solid red; */
-        width: 120px;
-    }
-    .headerLogoAndImg{
-        width: 100%;
-    }
+
+
     .listingPageHeader{
         flex-direction: column;
     }
@@ -1346,6 +1366,9 @@ form{
         justify-content: center;
     }
     .notificationSetting{
+        margin: auto;
+    }
+    .selectCustomerDropDown{
         margin: auto;
     }
 
@@ -1413,6 +1436,7 @@ form{
 
 
 @media only screen and (max-width:350px){
+
     .invoiceLogo img{
         width: 100px;
     }
