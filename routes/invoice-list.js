@@ -13,9 +13,10 @@ router.get('/', async function (req, res, next) {
         var cookeData = req.cookies.jwt
         
         var currentUser = await userModel.findOne({ _id: cookeData });
-        var userID = currentUser.userID;
+        var userID = currentUser._id;
         if(currentUser.userType != "Admin"){
             var invoiceData = await invoiceModel.find({userID : userID});
+          
         }else{
             var invoiceData = await invoiceModel.find();
         }

@@ -9,7 +9,7 @@ var logger = require('morgan');
 // pages routers
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/login');
-// var signupRouter = require('./routes/signup');
+var signupRouter = require('./routes/signup');
 var logoutRouter = require('./routes/logout')
 var customerRouter = require('./routes/customer');
 var createCustomer = require('./routes/create-customer');
@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, '/public')));
 // using routers
 app.use('/', indexRouter);
 app.use('/login', usersRouter);
-// app.use('/signup', signupRouter);
+app.use('/signup', signupRouter);
 app.use('/logout', logoutRouter);
 app.use('/customers', customerRouter);
 app.use('/create-customer', createCustomer);

@@ -58,7 +58,7 @@ router.post('/', async function (req, res, next) {
     
 
     var generatedInvoice = new generateInvoice({
-      userID : `${currentUser[0].userID}`,
+      userID : `${cookeData}`,
       Name: data.name,
       Address: data.address,
       Email: data.email,

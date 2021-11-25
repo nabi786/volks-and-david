@@ -45,24 +45,23 @@ router.post('/', async function (req, res) {
             res.render('create-user', { passError: "password does not match" });
         } else {
 
-            var users = await userModel.find()
-            // console.log();
+            // var users = await userModel.findOne({userType : "Admin"})
+            // console.log(users);
 
             var newUser = new userModel({
                 userType: "User",
-                userID : `${users.length+1}`,
                 firstname: name,
                 lastname: lastname,
                 email: email,
                 phone: number,
                 password: password,
                 date: new Date().toLocaleDateString()
-            })
+
+            });
 
 
             newUser.save(function (err, data) {
                 if (err) throw err;
-
                 res.redirect('users-list')
             })
         }
