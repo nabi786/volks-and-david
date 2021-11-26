@@ -22,7 +22,7 @@ router.get('/', async function (req, res, next) {
         }
         
         var invoiceData = invoiceData.reverse();
-
+        
         var names = []
         for (var x = 0; x < invoiceData.length; x++) {
             data = invoiceData[x].Name

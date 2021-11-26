@@ -74,10 +74,10 @@
                                     <h3>Invoice</h3>
 
                                     <div class="invoiceNumberBox">
-                                        <span>NTN No: <span style="color: #5e6e82;">
+                                        <span>NTN No: <span >
                                                 <%=currentUser.NTNNumber%>
                                             </span></span>
-                                        <span>INC No: <span style="color: #5e6e82;">
+                                        <span>INC No: <span >
                                                 <%=currentUser.INCNumber%>
                                             </span></span>
                                     </div>
@@ -191,16 +191,16 @@
 
                                                 </td>
                                                 <td>
-                                                    <%=InvoiceItem[x].unitPrice%>
+                                                    <%=InvoiceItem[x].unitPrice%>.00
                                                 </td>
                                                 <td>
-                                                    <%=InvoiceItem[x].totalPrice%>
+                                                    <%=InvoiceItem[x].totalPrice%>.00
                                                 </td>
                                                 <td>
                                                     <%=InvoiceItem[x].discount%>
                                                 </td>
                                                 <td>
-                                                    <%=InvoiceItem[x].netPrice%>
+                                                    <%=InvoiceItem[x].netPrice%>.00
                                                 </td>
                                             </tr>
                                             <%}%>
@@ -236,19 +236,19 @@
                                     <div class="invoiceDeteDetialsItem">
                                         <span class="invoiceDateTitle"> SubTotal:</span>
                                         <span>
-                                            <%=currentUser.SubTotal%>
+                                            <%=currentUser.SubTotal%>.00
                                         </span>
                                     </div>
                                     <div class="invoiceDeteDetialsItem">
                                         <span class="invoiceDateTitle"> Tax:</span>
                                         <span>
-                                            <%=currentUser.Tax%>
+                                            <%=currentUser.Tax%>.00
                                         </span>
                                     </div>
                                     <div class="invoiceDeteDetialsItem">
                                         <span class="invoiceDateTitle"> Balance Due:</span>
                                         <span>
-                                            <%=currentUser.GrandTotal%>
+                                            <%=currentUser.GrandTotal%>.00
                                         </span>
                                     </div>
                                 </div>
@@ -263,25 +263,25 @@
                             <div class="invoiceSummary " style="font-size: 13px;">
                                 <div class="invoiceDeteDetialsItem" style="border: none;">
                                     <span class="invoiceDateTitle">Address:</span>
-                                    <span style="color: black;">
+                                    <span >
                                         Office No.4, 1st Floor, Al-Rehman Center, 70-Ferozepur Road, Shama Stop, Lahore
                                     </span>
                                 </div>
                                 <div class="invoiceDeteDetialsItem" style="border: none;">
                                     <span class="invoiceDateTitle">Phone:</span>
-                                    <span style="color: black;">
+                                    <span >
                                         0302-2999904 / 042-37420169
                                     </span>
                                 </div>
                                 <div class="invoiceDeteDetialsItem" style="border: none;">
                                     <span class="invoiceDateTitle">Web:</span>
-                                    <span style="color: black;">
+                                    <span >
                                         volksanddavid.com
                                     </span>
                                 </div>
                                 <div class="invoiceDeteDetialsItem" style="border: none;">
                                     <span class="invoiceDateTitle">Email:</span>
-                                    <span style="color: black;">
+                                    <span >
                                         info@volksanddavid.com
                                     </span>
                                 </div>
@@ -338,7 +338,7 @@
         $('#downloadPDFBtn').click(function () {
 
             var invoiceElm = document.getElementsByClassName('notificationContentBox')[0];
-            $('.invoiceTable').css('width', "100%");
+            // $('.invoiceTable').css('width', "100%");
 
             console.log(invoiceElm)
             var options = {
@@ -355,9 +355,6 @@
     generatePDF()
 
 
-    function print() {
-        
-    } print()
 
 
     var dropDownAble = document.getElementsByClassName('dropDownAble');

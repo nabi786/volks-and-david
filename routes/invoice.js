@@ -12,13 +12,24 @@ router.get('/:name/:id', async function (req, res, next) {
 
     var userID = req.params.id;
     var currentUser = await invoiceModel.findOne({ _id: userID })
-    // console.log(currentUser);
+    
     var InvoiceItem = currentUser.InvoiceItem;
     InvoiceItem = JSON.parse(InvoiceItem);
 
+    var number = Intl.NumberFormat('en-US')
+
+    var invoiceData = []
+    for(var x =0; x <InvoiceItem.length; x++){
+      InvoiceItem[x].unitPrice = number.format(InvoiceItem[x].unitPrice)
+      InvoiceItem[x].totalPrice = number.format(InvoiceItem[x].totalPrice)
+      InvoiceItem[x].netPrice = number.format(InvoiceItem[x].netPrice)
+
+      var newAry = InvoiceItem[x]
+      invoiceData.push(newAry)
+    }
 
     if(cookeData){
-      res.render('invoice', {InvoiceItem : InvoiceItem, currentUser : currentUser});
+      res.render('invoice', {InvoiceItem : invoiceData, currentUser : currentUser});
     }else{
       res.redirect('login')
     }

@@ -13,6 +13,8 @@ router.get('/', async function (req, res, next) {
 
     // searching cookie data
     var cookeData = req.cookies.jwt;
+    
+    
 
     customersModel.find().exec(async function (err, data) {
       try {
@@ -52,6 +54,9 @@ router.post('/', async function (req, res, next) {
 
     var data = req.body.obj;
     data = JSON.parse(data);
+    
+    var number = Intl.NumberFormat('en-US')
+
 
     var cookeData = req.cookies.jwt;
     var currentUser = await userModel.find({_id : cookeData})
@@ -68,24 +73,21 @@ router.post('/', async function (req, res, next) {
       INCNumber: data.incNumber,
       date: data.date,
       InvoiceItem: data.InvoiceItems,
-      SubTotal: data.subTotal,
-      Tax: data.Tax,
-      GrandTotal: data.grandTotal,
+      SubTotal: number.format(data.subTotal),
+      Tax:  number.format(data.Tax),
+      GrandTotal: number.format(data.grandTotal),
       AmountInWords: data.AmntInWords,
       Payment_Method: data.paymentMethod,
       Account_Title: data.AccountTitle,
       Account_Number: data.AccountNumber
     });
 
-    generatedInvoice.save().exec(function (err, data) {
-      if (err) throw err;
-      
-      res.redirect('/invoice-list')
-    })
+    await generatedInvoice.save()
+    res.redirect('/invoice-list')
 
 
   } catch (error) {
-
+    console.log(error)
   }
 
 });

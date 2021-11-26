@@ -932,15 +932,18 @@ form{
     display: flex;
     flex-direction: column;
     text-align: left;
-    font-size: 15px;
+    font-size: 13px;
+}
+.invoiceNumberBox span:last-child{
+    color: rgb(49, 49, 49);;
 }
 
 .invoiceDate{
    /* border: 1px solid red; */
    color: black;
    margin-top: 20px;
-   /* font-weight: 500; */
-   color: var(--main-color);
+   font-weight: 400;
+   color : rgb(49, 49, 49);
    text-align: center;
    width: 30%;
 }
@@ -965,8 +968,9 @@ form{
 
 .invoiceAmmount{
      /* border: 1px solid red; */
-     background-color: rgba(46, 204, 113,0.8);
-     color: white;
+     background-color: rgba(46, 204, 113,0.5);
+     color: black;
+     font-weight: 500;
 }
 
 .billToBox{
@@ -988,9 +992,9 @@ form{
     font-weight: 500;
 }
 .billToBox p span{
-    color: var(--main-color);
-    color: 400;
-    font-weight: normal;
+    color: rgb(49, 49, 49);
+    
+    font-weight: 400;
 }
 .billToName{
     color: black;
@@ -1023,12 +1027,14 @@ form{
     color: black;
     font-weight: 500;
     /* border: 1px solid red; */
+    font-size: 15px;
 }
 .amountInWordBox2{
     width: 80%;
     border: none;
     border-bottom: 1px solid var(--main-color);
     color: black;
+    font-size: 13px;
     /* border: 1px solid red; */
 
 }
@@ -1076,6 +1082,7 @@ form{
     font-size: 13px;
     color: black;
     margin: 0px;
+    
 }
 .paymentInfo div {
     border-bottom: 1px solid lightgray;
@@ -1083,6 +1090,7 @@ form{
 .invoiceSummary h3{
     font-size: 13px;
     color: black;
+    
     margin: 0px;
 }
 .invoiceSummary div{
@@ -1240,8 +1248,24 @@ form{
 }
 
 
+.invoiceDeteDetialsItem span:last-child{
+    color: rgb(49, 49, 49);;
+}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/* RESPONSIVE DESING */
 
 @media only screen and (max-width:995px){
     .customerTableBox{
@@ -1348,7 +1372,7 @@ form{
     .headerItems{
         padding: 4px 12px;
     }
-
+    
 
     .listingPageHeader{
         flex-direction: column;
@@ -1378,14 +1402,29 @@ form{
 
     .mainInvoiceContentSection{
         flex-direction: column;
-        text-align: center;
+        justify-content: flex-start;
+        text-align: left;
+    }
+    .invoiceHeader{
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .invoiceTitle{
+        width: 100%;
+        text-align: left;
     }
     .invoiceDate{
-        width: 100%;
+        width: 50%;
+        text-align: left;
+        margin-top: 0px;
+    }
+    .invoiceAmmount{
+        background-color: white;
+        color: black;
     }
     .amountInWord{
         flex-direction: column;
-        text-align: center;
+        text-align: left;
     }
     .amountInWordBox1{
         width: 100%;
@@ -1406,11 +1445,11 @@ form{
     }
     .paymentInfo{
         width: 100%;
-        text-align: center;
+        text-align: left;
     }
     .invoiceSummary{
         width: 100%;
-        text-align: center;
+        text-align: left;
         margin-top: 20px;
     }
     
