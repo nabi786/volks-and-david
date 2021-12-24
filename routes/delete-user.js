@@ -12,7 +12,7 @@ router.get('/:id', async function (req, res) {
             if(err) throw err;
             
 
-            res.redirect('invoice-list')
+            res.redirect('/users-list')
         })
         
     } catch (error) {

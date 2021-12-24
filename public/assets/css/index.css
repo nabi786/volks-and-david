@@ -1116,10 +1116,13 @@ form{
 
 
 .tableDiv{
-    /* border: 1px solid red; */
+    /* border: 1px solid red !important; */
     display: flex;
     height: 300px;
-    border: 1px solid lightgray;
+    border: 1px solid lightgray; 
+}
+.tableDiv textarea{
+   resize: none;
 }
 .generateTableHead{
     /* border: 1px solid red; */
@@ -1147,23 +1150,7 @@ form{
     text-align: center;
     position: relative;
 }
-.deleteInvoiceItemBtn{
-    position: absolute;
-    right: 0%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-}
-.deleteInvoiceItemBtn i{
-    cursor: pointer;
-    display: none;
-    transition: 0.5s;
-}
-.generateTableBody tr:hover .deleteInvoiceItemBtn i{
-    display: block;
-}
-.deleteInvoiceItemBtn i:hover{
-    color: var(--main-HoverColor);
-}
+
 
 
 
@@ -1472,6 +1459,11 @@ form{
 
   .invoiceTable{
       width: 700px;
+  }
+
+  .logo img{
+       /* border: 1px solid red; */
+        width: 100%;    
   }
   
 }

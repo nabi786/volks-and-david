@@ -189,8 +189,8 @@
                                     </div>
                                     <div class="generateTableBody">
                                         <div>
-                                            <input type="text" name="description"
-                                                class="form-control gnInvoiceTblData description">
+                                            <textarea type="text" name="description"
+                                                class="form-control gnInvoiceTblData description" style="max-height: auto;"></textarea>
                                         </div>
                                         <div>
                                             <input type="number" name="qty" class="form-control gnInvoiceTblData qty"
@@ -217,10 +217,10 @@
                                 <div class="addRowBtn mt-2">
                                     <button id="addMoreInvoiceItemBtn">Add More</button>
                                 </div>
-
+                                <hr>
                                 <div class="generateInvoiceSecondTable mt-2">
-                                    <table>
-                                        <tbody class="generateTableBody savedData"></tbody>
+                                    <table style="width:100%;">
+                                        <tbody class="generateTableBody savedData" style="width: 100%;"></tbody>
                                     </table>
                                 </div>
                             </div>
@@ -341,41 +341,56 @@
                 var html = "";
                 data.forEach(function (data, index) {
 
-                    html += `<tr class="generateInvoiceRow mt-1">
-                                            <td>
-                                                <input type="text" name="description" value="item ${index + 1}"
-                                                    class="form-control gnInvoiceTblData " readonly>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="description" value="${data.description}"
-                                                    class="form-control gnInvoiceTblData " readonly>
-                                            </td>
-                                            <td>
-                                                <input type="number" name="qty"
-                                                    class="form-control gnInvoiceTblData " value="${data.qty}" readonly>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="unitPrice"
-                                                    class="form-control gnInvoiceTblData  " value="${data.unitPrice}" readonly>
-                                            </td>
-                                            <td>
-                                                <input type="number" name="totalPrice"
-                                                    class="form-control gnInvoiceTblData  " value="${data.totalPrice}" readonly>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="discount"
-                                                    class="form-control gnInvoiceTblData  " value="${data.discount}" readonly>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="netPrice"
-                                                    class="form-control gnInvoiceTblData  " value="${data.netPrice}" readonly>
-                                            </td>
+                    html += `<div class="tableDiv"">
+                                    <div class="generateTableHead">
 
-                                            <td class="deleteInvoiceItemBtn">
-                                                <i class="fas fa-trash" id="deleteInvoiceItemBtn"></i>
-                                            </td>
+                                        <h6>
+                                            Description
+                                        </h6>
+                                        <h6>
+                                            Qty
+                                        </h6>
+                                        <h6>
+                                            Unit Price
+                                        </h6>
+                                        <h6>
+                                            Total Price
+                                        </h6>
+                                        <h6>
+                                            Discount
+                                        </h6>
+                                        <h6>
+                                            Net Price
+                                        </h6>
 
-                                        </tr>`
+                                    </div>
+                                    <div class="generateTableBody">
+                                        <div>
+                                            <textarea type="text"  class="form-control"  readonly>${data.description}</textarea>
+                                        </div>
+                                        <div>
+                                            <input type="number" class="form-control" value="${data.qty}" readonly>
+                                        </div>
+                                        <div>
+                                            <input type="number"  class="form-control" value="${data.unitPrice}" readonly>
+                                        </div>
+                                        <div>
+                                            <input type="text"  class="form-control" value="${data.totalPrice}" readonly>
+                                        </div>
+                                        <div>
+                                            <input type="text" class="form-control" value="${data.discount}" readonly>
+                                        </div>
+                                        <div>
+                                            <input type="text" class="form-control" value="${data.netPrice}" readonly>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                
+                                    <button  class="btn btn-danger deleteInvoiceItemBtn">Delete Item</button>
+
+                                <hr>
+                                `
 
                 })
                 savedData.innerHTML = html

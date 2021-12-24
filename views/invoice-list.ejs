@@ -96,6 +96,9 @@
                                         <th>
                                             Phone
                                         </th>
+                                        <th>
+                                            Delete
+                                        </th>
                                     </tr>
                                 </thead>
 
@@ -124,6 +127,11 @@
 
                                                 <%=invoiceData[x].Phone%>
 
+                                            </td>
+                                            <td>
+                                                <a href="/deleteInvoice/<%=invoiceData[x].id%>" style="color: gray;">
+                                                    <i class="fas fa-trash-alt deleteInvoice"style="cursor: pointer"></i>
+                                                </a>
                                             </td>
 
                                         </tr>

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 
+
 // pages routers
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/login');
@@ -26,6 +27,8 @@ var userPageRouter = require('./routes/create-user')
 var users = require('./routes/usersList')
 var editUser = require('./routes/edit-user')
 var deleteUser = require('./routes/delete-user')
+var deleteInvocie = require('./routes/deleteInvoice')
+var approveAccount = require('./routes/account')
 
 
 
@@ -56,6 +59,8 @@ app.use('/create-user', userPageRouter);
 app.use('/users-list', users)
 app.use('/edit-user', editUser)
 app.use('/delete-user', deleteUser)
+app.use('/deleteInvoice',deleteInvocie)
+app.use('/account', approveAccount)
 
 
 // catch 404 and forward to error handler
@@ -71,6 +76,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+  
   res.render('err');
 });
 
