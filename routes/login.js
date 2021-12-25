@@ -25,7 +25,9 @@ router.post('/', async function (req, res, next) {
     try {
 
         var email = req.body.email;
+        var email = email.trim();
         var password = req.body.password;
+        var password = password.trim();
         var userData = await userModel.findOne({ email: email })
 
         if (userData) {
