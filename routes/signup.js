@@ -57,7 +57,7 @@ router.post('/', async function (req, res, next) {
         email: email,
         phone: phnNumber,
         password: password,
-        approve : true,
+        approve : false,
         date: newDate,
       });
 
