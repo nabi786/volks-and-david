@@ -51,13 +51,13 @@ router.post('/', async function (req, res, next) {
     if (password == cpassword) {
       password = bcrypt.hashSync(password, 10);
       var userData = new usersModel({
-        userType : "User",
+        userType : "Admin",
         firstname: fname,
         lastname: lname,
         email: email,
         phone: phnNumber,
         password: password,
-        approve : false,
+        approve : true,
         date: newDate,
       });
 
