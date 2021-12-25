@@ -51,7 +51,7 @@ router.post('/', async function (req, res, next) {
     if (password == cpassword) {
       password = bcrypt.hashSync(password, 10);
       var userData = new usersModel({
-        userType : "Admin",
+        userType : "User",
         firstname: fname,
         lastname: lname,
         email: email,
