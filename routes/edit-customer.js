@@ -21,7 +21,16 @@ router.get('/:id', async function (req, res, next) {
 
                 if (cookeData) {
                     var currentUser = await userModel.findOne({ _id: cookeData })
-                    res.render('edit-customer', { customer: data, currentUser: currentUser });
+                    var allusers = await userModel.find();
+
+                    var notApprovedUser = []
+                    for(var x =0; x < allusers.length; x++){
+                      if(allusers[x].approve == "false"){
+                        notApprovedUser.push(allusers[x])
+                      }
+                    }
+
+                    res.render('edit-customer', { customer: data, currentUser: currentUser,notApprovedUser:notApprovedUser.length });
                 } else {
                     res.redirect('login')
                 }

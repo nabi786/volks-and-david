@@ -28,7 +28,9 @@ var users = require('./routes/usersList')
 var editUser = require('./routes/edit-user')
 var deleteUser = require('./routes/delete-user')
 var deleteInvocie = require('./routes/deleteInvoice')
-var approveAccount = require('./routes/account')
+var approveAccount = require('./routes/authentication')
+var approveuser = require('./routes/approve-user')
+
 
 
 
@@ -60,7 +62,9 @@ app.use('/users-list', users)
 app.use('/edit-user', editUser)
 app.use('/delete-user', deleteUser)
 app.use('/deleteInvoice',deleteInvocie)
-app.use('/account', approveAccount)
+app.use('/authentication', approveAccount)
+app.use('/notification', notification)
+app.use('/approve-user', approveuser)
 
 
 // catch 404 and forward to error handler

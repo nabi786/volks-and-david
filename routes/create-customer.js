@@ -10,7 +10,22 @@ router.get('/', async function (req, res, next) {
         var cookeData = req.cookies.jwt;
         if(cookeData){
             var currentUser = await userModel.findOne({_id : cookeData})
-            res.render('create-customer', {errMsg : "",currentUser : currentUser});
+
+            if(currentUser.approve == "false"){
+                res.redirect('/authentication')
+              }else{
+
+                var allusers = await userModel.find();
+
+                var notApprovedUser = []
+                for(var x =0; x < allusers.length; x++){
+                  if(allusers[x].approve == "false"){
+                    notApprovedUser.push(allusers[x])
+                  }
+                }
+
+                  res.render('create-customer', {errMsg : "",currentUser : currentUser,notApprovedUser:notApprovedUser.length});
+              }
         }else{
             res.redirect('login')
         }

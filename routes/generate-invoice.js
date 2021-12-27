@@ -28,7 +28,22 @@ router.get('/', async function (req, res, next) {
 
           var currentUser = await userModel.findOne({ _id: cookeData });
 
-          res.render('generate-invoice', { userDetial: "", customerList: customerList, currentUser: currentUser });
+          if(currentUser.approve == "false"){
+            res.redirect('/authentication')
+          }else{
+
+            var allusers = await userModel.find();
+
+            var notApprovedUser = []
+            for(var x =0; x < allusers.length; x++){
+              if(allusers[x].approve == "false"){
+                notApprovedUser.push(allusers[x])
+              }
+            }
+            
+
+            res.render('generate-invoice', { userDetial: "", customerList: customerList, currentUser: currentUser, notApprovedUser: notApprovedUser.length});
+          }
 
 
         } else {
@@ -95,7 +110,7 @@ router.post('/', async function (req, res, next) {
 
 
 
-
+// generate invocie from cutomers list 
 router.get('/:id', async function (req, res, next) {
   try {
 
@@ -107,7 +122,17 @@ router.get('/:id', async function (req, res, next) {
 
     var currentUser = await userModel.findOne({_id : req.cookies.jwt})
       // console.log(currentUser)
-    res.render('generate-invoice', { userDetial: userDetial, customerList: customerList, currentUser : currentUser});
+
+      var allusers = await userModel.find();
+
+      var notApprovedUser = []
+      for(var x =0; x < allusers.length; x++){
+        if(allusers[x].approve == "false"){
+          notApprovedUser.push(allusers[x])
+        }
+      }
+
+    res.render('generate-invoice', { userDetial: userDetial, customerList: customerList, currentUser : currentUser,notApprovedUser : notApprovedUser.length});
     
 
   } catch (error) {

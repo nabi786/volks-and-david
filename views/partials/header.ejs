@@ -20,37 +20,38 @@
                         
                         <div class="headerUserProfileDetials">
 
-                            <!-- <div class="cartIcone">
+                             <!-- <div class="cartIcone">
                                 <a href="#">
                                     <i class="fas fa-shopping-cart"></i>
                                     <span class="notificationStatus"></span>
                                 </a>
-                            </div>
+                            </div> -->
+                            <%if(currentUser.userType == "Admin"){%>
                             <div class="notifiationIcone">
                                 <a href="/notification">
                                     <i class="fas fa-bell"></i>
-                                    <span class="notificationStatus"></span>
+                                    <span class="notificationStatus"><%=notApprovedUser%></span>
                                 </a>
-                            </div> -->
-                            <!-- <div class="headerUserProfileImg">
-                                <img src="https://prium.github.io/falcon/v3.3.0/assets/img/team/3-thumb.png">
-                            </div> -->
-                            <!-- <div class="profileDteialsDropDown">
+                            </div> 
+                            <%}%>
+                            <div class="headerUserProfileImg">
+                                <img src="/assets/images/profile.png">
+                                
+                            </div> 
+                             <div class="profileDteialsDropDown">
                                 <ul>
                                     <li>
-                                        <a href="#">Profile Account</a>
+                                        <a href="#">Profile</a>
                                     </li>
+                                    
                                     <li>
-                                        <a href="#">Setting</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Logout</a>
+                                        <a href="logout">Logout</a>
                                     </li>
                                 </ul>
-                            </div> -->
-                            <span class="currentUserName">
+                            </div> 
+                            <!-- <span class="currentUserName">
                                 <%=currentUser.firstname%>
-                            </span>
+                            </span> -->
                         </div>
                     </div>
 

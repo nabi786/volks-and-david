@@ -25,9 +25,9 @@ router.post('/', async function (req, res, next) {
     try {
 
         var email = req.body.email;
-        var email = email.trim();
+        var email = email.trim()
         var password = req.body.password;
-        var password = password.trim();
+        var password = password.trim()
         var userData = await userModel.findOne({ email: email })
 
         if (userData) {
@@ -35,10 +35,12 @@ router.post('/', async function (req, res, next) {
             if (userData.userType == "Admin") {
                 var isMatch = bcrypt.compareSync(password, userData.password);
             } else {
-                if (password == userData.password) {
-                    var isMatch = true;
-                }
+                var isMatch = bcrypt.compareSync(password, userData.password);
+              
             }
+
+
+            console.log(isMatch)
 
             if (isMatch == true) {
 

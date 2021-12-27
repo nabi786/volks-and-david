@@ -43,8 +43,24 @@ router.get('/', async function (req, res, next) {
 
                 var customers = data;
                 if (cookeData) {
+                    
+                    if(currentUser.approve == "false"){
 
-                    res.render('invoice-list', { invoiceData: invoiceData, links: links, customers: customers, currentUser: currentUser })
+                        res.redirect('/authentication')
+                      }else{
+
+                        var allusers = await userModel.find()
+                        var notApprovedUser = []
+                        for(var x =0; x < allusers.length; x++){
+                        if(allusers[x].approve == "false"){
+                            notApprovedUser.push(allusers[x])
+                        }
+                        }
+
+                          res.render('invoice-list', {notApprovedUser:notApprovedUser.length, invoiceData: invoiceData, links: links, customers: customers, currentUser: currentUser })
+                      
+                        }
+
                 } else {
                     res.redirect('login')
                 }

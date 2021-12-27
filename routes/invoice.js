@@ -29,7 +29,11 @@ router.get('/:name/:id', async function (req, res, next) {
     }
 
     if(cookeData){
-      res.render('invoice', {InvoiceItem : invoiceData, currentUser : currentUser});
+      if(currentUser.approve == "false"){
+        res.redirect('/authentication')
+      }else{
+        res.render('invoice', {InvoiceItem : invoiceData, currentUser : currentUser});
+      }
     }else{
       res.redirect('login')
     }

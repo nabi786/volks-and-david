@@ -12,8 +12,22 @@ router.get('/', async function (req, res) {
         if (cookeData) {
 
             var currentUser = await userModel.findOne({ _id: cookeData });
+            if(currentUser.approve == "false"){
+                res.redirect('/authentication')
+              }else{
 
-            res.render('create-user', { passError: "", currentUser: currentUser });
+                var allusers = await userModel.find();
+
+                var notApprovedUser = []
+                for(var x =0; x < allusers.length; x++){
+                  if(allusers[x].approve == "false"){
+                    notApprovedUser.push(allusers[x])
+                  }
+                }
+
+                res.render('create-user', { passError: "", currentUser: currentUser,notApprovedUser:notApprovedUser.length });
+                
+            }
         } else {
             res.redirect('login');
         }

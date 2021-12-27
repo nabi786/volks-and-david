@@ -14,7 +14,21 @@ router.get("/:id", async function(req,res){
 
             var currentUser = await userModel.findOne({_id : cookieData}) 
             var currentSelectedITem = await userModel.findOne({_id : selectedItemID});
-            res.render('edit-user',{currentUser : currentUser, currentSelectedITem : currentSelectedITem});
+            if(currentUser.approve == "false"){
+                res.redirect('/authentication')
+              }else {
+
+                var allusers = await userModel.find();
+
+                var notApprovedUser = []
+                for(var x =0; x < allusers.length; x++){
+                  if(allusers[x].approve == "false"){
+                    notApprovedUser.push(allusers[x])
+                  }
+                }
+
+                  res.render('edit-user',{currentUser : currentUser, currentSelectedITem : currentSelectedITem, notApprovedUser: notApprovedUser.length});
+              }
             
           } else {
             res.redirect('login')

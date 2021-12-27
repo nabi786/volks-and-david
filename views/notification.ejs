@@ -36,24 +36,24 @@
     <!-- header section -->
     <%- include("partials/header.ejs") %>
 
-    <!-- main content section start -->
-    <section class="mainSection container" style=" padding: 0px; margin: auto;">
+        <!-- main content section start -->
+        <section class="mainSection container" style=" padding: 0px; margin: auto;">
 
-        <!-- left side bar -->
-        <%- include("partials/sideBar.ejs") %>
+            <!-- left side bar -->
+            <%- include("partials/sideBar.ejs") %>
 
 
 
-        <!-- main container -->
-        <div class="mainContentBar mt-2">
+                <!-- main container -->
+                <div class="mainContentBar mt-2">
 
-            <div class="notificationOuterBox">
+                    <div class="notificationOuterBox">
 
-                <div class="notificationBoxHeader">
-                    <span class="headerTitle">
-                        Your Notifications
-                    </span>
-                    <div class="notificationSetting">
+                        <div class="notificationBoxHeader">
+                            <span class="headerTitle">
+                                Your Notifications
+                            </span>
+                            <!-- <div class="notificationSetting">
 
                         <span>
                             <a href="#">
@@ -65,188 +65,60 @@
                                 Notification Settings
                             </a>
                         </span>
+                    </div> -->
+                        </div>
+
+                        <hr style="margin: 0px;">
+
+                        <div class="notificationContentBox">
+                            <ul>
+                                <%for(var x=0; x < allusers.length; x++){%>
+                                    <%if(allusers[x].approve=="false" ){%>
+                                        <li class="notification notificationActive">
+                                            <div class="notifcationUserImg">
+                                                <img src="/assets/images/profile.png">
+                                            </div>
+                                            <div class="notificationDetials">
+                                                <div>
+                                                    <p>
+                                                        New Account created by <span style="text-transform: capitalize; font-weight: bold;"><%=allusers[x].firstname%></span>.
+                                                    </p>
+                                                    
+                                                    <span class="notifcationTime">
+                                                        📢 <%=allusers[x].date%>
+                                                    </span>
+                                                </div>
+                                                <a href="/approve-user/<%=allusers[x].id%>">Approve Now</a>
+                                            </div>
+
+                                        </li>
+                                        <%}%>
+                                            <%}%>
+
+                            </ul>
+                        </div>
+
                     </div>
+
+
+
+                    <footer class="mt-5">
+
+                        <div>
+                            <p>
+                                copyright 2021
+                            </p>
+                        </div>
+                        <div>
+                            <p>
+                                Made by wide range digital services
+                            </p>
+                        </div>
+                    </footer>
                 </div>
 
-                <hr style="margin: 0px;">
 
-                <div class="notificationContentBox">
-                    <ul>
-                        <li class="notification notificationActive">
-                            <div class="notifcationUserImg">
-                                <img src="https://prium.github.io/falcon/v3.3.0/assets/img/team/1.jpg">
-                            </div> 
-                            <div class="notificationDetials">
-                                <p>
-                                    decided by you, the readers. Check out the champions and runners-up in all 21 categories now!
-                                </p>
-                                <span class="notifcationTime">
-                                   📢 Just Now
-                                </span>
-                            </div>
-                            
-                        </li>
-                        
-                        <li class="notification">
-                            <div class="notifcationUserImg">
-                                <img src="https://prium.github.io/falcon/v3.3.0/assets/img/team/1.jpg">
-                            </div> 
-                            <div class="notificationDetials">
-                                <p>
-                                    decided by you, the readers. Check out the champions and runners-up in all 21 categories now!
-                                </p>
-                                <span class="notifcationTime">
-                                    📢 One Hour Ago
-                                </span>
-                            </div>
-                            
-                        </li>
-
-                        <li class="notification">
-                            <div class="notifcationUserImg">
-                                <img src="https://prium.github.io/falcon/v3.3.0/assets/img/team/1.jpg">
-                            </div> 
-                            <div class="notificationDetials">
-                                <p>
-                                    decided by you, the readers. Check out the champions and runners-up in all 21 categories now!
-                                </p>
-                                <span class="notifcationTime">
-                                    📢 Tow Hour Ago
-                                </span>
-                            </div>
-                            
-                        </li>
-
-                        <li class="notification notificationActive">
-                            <div class="notifcationUserImg">
-                                <img src="https://prium.github.io/falcon/v3.3.0/assets/img/team/1.jpg">
-                            </div> 
-                            <div class="notificationDetials">
-                                <p>
-                                    decided by you, the readers. Check out the champions and runners-up in all 21 categories now!
-                                </p>
-                                <span class="notifcationTime">
-                                    📢 Three Hour Ago
-                                </span>
-                            </div>
-                            
-                        </li>
-
-                        <li class="notification notificationActive">
-                            <div class="notifcationUserImg">
-                                <img src="https://prium.github.io/falcon/v3.3.0/assets/img/team/1.jpg">
-                            </div> 
-                            <div class="notificationDetials">
-                                <p>
-                                    decided by you, the readers. Check out the champions and runners-up in all 21 categories now!
-                                </p>
-                                <span class="notifcationTime">
-                                    📢 Four Hour Ago
-                                </span>
-                            </div>
-                            
-                        </li>
-
-                        <li class="notification notificationActive">
-                            <div class="notifcationUserImg">
-                                <img src="https://prium.github.io/falcon/v3.3.0/assets/img/team/1.jpg">
-                            </div> 
-                            <div class="notificationDetials">
-                                <p>
-                                    decided by you, the readers. Check out the champions and runners-up in all 21 categories now!
-                                </p>
-                                <span class="notifcationTime">
-                                    📢 Five Hour Ago
-                                </span>
-                            </div>
-                            
-                        </li>
-
-                        <li class="notification">
-                            <div class="notifcationUserImg">
-                                <img src="https://prium.github.io/falcon/v3.3.0/assets/img/team/1.jpg">
-                            </div> 
-                            <div class="notificationDetials">
-                                <p>
-                                    decided by you, the readers. Check out the champions and runners-up in all 21 categories now!
-                                    decided by you, the readers. Check out the champions and runners-up in all 21 categories now!
-                                    decided by you, the readers. Check out the champions and runners-up in all 21 categories now!
-                                </p>
-                                <span class="notifcationTime">
-                                    📢 Six Hour ago
-                                </span>
-                            </div>
-                            
-                        </li>
-
-                        <li class="notification">
-                            <div class="notifcationUserImg">
-                                <img src="https://prium.github.io/falcon/v3.3.0/assets/img/team/1.jpg">
-                            </div> 
-                            <div class="notificationDetials">
-                                <p>
-                                    decided by you, the readers. Check out the champions and runners-up in all 21 categories now!
-                                </p>
-                                <span class="notifcationTime">
-                                    📢 One day ago
-                                </span>
-                            </div>
-                            
-                        </li>
-
-                        <li class="notification">
-                            <div class="notifcationUserImg">
-                                <img src="https://prium.github.io/falcon/v3.3.0/assets/img/team/1.jpg">
-                            </div> 
-                            <div class="notificationDetials">
-                                <p>
-                                    decided by you, the readers. Check out the champions and runners-up in all 21 categories now!
-                                </p>
-                                <span class="notifcationTime">
-                                    📢 One day ago
-                                </span>
-                            </div>
-                            
-                        </li>
-
-                        <li class="notification">
-                            <div class="notifcationUserImg">
-                                <img src="https://prium.github.io/falcon/v3.3.0/assets/img/team/1.jpg">
-                            </div> 
-                            <div class="notificationDetials">
-                                <p>
-                                    decided by you, the readers. Check out the champions and runners-up in all 21 categories now!
-                                </p>
-                                <span class="notifcationTime">
-                                    📢 One day ago
-                                </span>
-                            </div>
-                            
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-
-
-
-            <footer class="mt-5">
-
-                <div>
-                    <p>
-                        copyright 2021
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        Made by wide range digital services
-                    </p>
-                </div>
-            </footer>
-        </div>
-
-
-    </section>
+        </section>
 
 </body>
 <!-- Jquery -->
