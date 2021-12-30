@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
 *{
     padding: 0px;
     margin: 0px;
@@ -14,7 +17,7 @@ body{
 :root{
     --main-color: #5e6e82;
     --main-background-color:#e9f1fa;
-    --main-fonts: 'Roboto', sans-serif;
+    --main-fonts: 'Poppins', sans-serif;;
     --main-SecondBackgroundColor: #f9fafd;
     --main-boxShadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
     --main-boxShadow2: 0px 0px 20px 5px rgba(0, 0, 0, 0.18);
@@ -870,6 +873,7 @@ form{
 .MainBoxHeaderButtons{
     /* border: 1px solid red; */
     margin-left: auto;
+    
 }
 .MainBoxHeaderButtons input{
     padding: 0px 4px;
@@ -880,18 +884,22 @@ form{
     outline: none;
 }
 .MainBoxHeaderButtons button{
-    padding: 4px 12px;
-    background-color: white;
+    padding: 8px 20px;
     border: 1px solid lightgray;
     font-size: 13px;
     cursor: pointer;
-    color: var(--main-color);
+    color: white;
     box-shadow: var(--main-boxShadow);    
     font-weight: 500;
     border-radius: 5px;
+    display: block;
+    margin: auto;
 }
 .MainBoxHeaderButtons button:focus{
     outline: none;
+}
+.MainBoxHeaderButtons button i{
+    margin-left: 10px;
 }
 .customerTable{
     /* border: 1px solid red; */
@@ -936,17 +944,21 @@ form{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row-reverse;
 }
 
 .invoiceTitle{
     color:  black;
     text-align: right;
 }
+.invoiceTitle h3{
+    font-size: 3.75rem;
+}
 .invoiceNumberBox {
     display: flex;
-    flex-direction: column;
-    text-align: left;
-    font-size: 13px;
+
+    /* border: 1px solid red; */
+    justify-content: space-between;
 }
 .invoiceNumberBox span:last-child{
     color: rgb(49, 49, 49);;
@@ -955,7 +967,6 @@ form{
 .invoiceDate{
    /* border: 1px solid red; */
    color: black;
-   margin-top: 20px;
    font-weight: 400;
    color : rgb(49, 49, 49);
    text-align: center;
@@ -972,19 +983,20 @@ form{
 .invoiceDeteDetials{
     display: flex;
     flex-direction: column;
-    font-size: 13px;
+    font-size: 15px;
 }
 .invoiceDateTitle{
-    color: black;
-    font-weight: 500;
-    
+    color: black;   
 }
 
 .invoiceAmmount{
      /* border: 1px solid red; */
-     background-color: rgba(46, 204, 113,0.5);
-     color: black;
-     font-weight: 500;
+     background-color: #007bff;
+    
+}
+.invoiceAmmount span{
+    color: white !important;
+    
 }
 
 .billToBox{
@@ -993,22 +1005,20 @@ form{
 }
 .billToBox h3{
     font-size: 15px;
-    color: var(--main-color);
+    color: black;
     /* font-size: 20px; */
 }
 
 
 .billToBox p{
     color: black;
-    font-size: 13px;
+    font-size: 15px;
     margin: 0px;
     /* border: 1px solid red; */
-    font-weight: 500;
 }
 .billToBox p span{
     color: rgb(49, 49, 49);
     
-    font-weight: 400;
 }
 .billToName{
     color: black;
@@ -1039,16 +1049,13 @@ form{
 .amountInWordBox1{
     width: 20%;
     color: black;
-    font-weight: 500;
-    /* border: 1px solid red; */
-    font-size: 15px;
+    
 }
 .amountInWordBox2{
     width: 80%;
     border: none;
     border-bottom: 1px solid var(--main-color);
     color: black;
-    font-size: 13px;
     /* border: 1px solid red; */
 
 }
@@ -1070,14 +1077,15 @@ form{
 .invoiceTable thead tr th{
     font-weight: normal;
     text-align: center;
-    padding: 4px;
+    padding: 12px 4px;
     font-size: 14px;
 }
 .invoiceTable tbody tr td{
     font-size: 13px;
     text-align: left;
-    padding: 4px;
+    padding: 12px 4px;
     border-bottom: 1px solid lightgray;
+    text-align: center;
 }
 .serialNumberBox{
     /* border: 1px solid red; */
@@ -1088,7 +1096,7 @@ form{
     /* border: 1px solid rgb(31, 30, 30); */
     display: flex;
     justify-content: space-between;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: normal;
 }
 
@@ -1102,7 +1110,7 @@ form{
     border-bottom: 1px solid lightgray;
 }
 .invoiceSummary h3{
-    font-size: 13px;
+    font-size: 15px;
     color: black;
     
     margin: 0px;
@@ -1288,6 +1296,60 @@ form{
     height: 100%;
 }
 
+.invoiceDeteDetialsItem{
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+}
+/* .invoiceDeteDetialsItem span{
+    padding: 8px 0px;
+} */
+
+.ownerDetials{
+    width: 50%;
+}
+
+.ownerDetials .invoiceDeteDetialsItem{
+    margin-top: 5px;
+}
+.ownerDetials .invoiceDeteDetialsItem:first-child{
+    margin-top: 0px;
+}
+
+.invoiceItemDescriptionBox{
+   max-width: 150px;
+   max-height: auto;
+   text-align: left !important;
+}
+.ownerDetials h3{
+    color: black;
+}
+
+
+
+.printableInvoice{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    z-index: 111;
+    overflow: auto;
+}
+
+.closePreviweBtn{
+    display: none ;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1363,6 +1425,16 @@ form{
     }
 
 
+}
+
+
+@media only screen and (max-width:767px){
+    .invoiceTitle h3{
+        font-size: 2.5rem;
+    }
+    .invoiceDate{
+        width: 40%;
+    }
 }
 
 
@@ -1470,6 +1542,7 @@ form{
     .invoiceHeader{
         flex-direction: column;
         justify-content: flex-start;
+        
     }
     .invoiceTitle{
         width: 100%;
@@ -1516,7 +1589,18 @@ form{
     }
     
 }
+
+
+@media only screen and (max-width:450px){
+    .invoiceDate{
+        width: 100%;
+    }
+}
+
+
+
 @media only screen and (max-width:400px){
+   
     footer{
         display: flex;
         flex-direction: column;

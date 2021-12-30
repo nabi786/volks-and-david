@@ -62,22 +62,22 @@
                             <form action="/create-customer" method="POST">
                                 <div class="inputFields">
                                     <label>Name</label>
-                                    <input class="form-control" type="name" name="name" placeholder="john">
+                                    <input class="form-control" type="name" name="name" placeholder="john" required>
                                 </div>
                                 <div class="inputFields">
                                     <label>Email</label>
-                                    <input class="form-control" type="email" name="email" placeholder="nomi@gmail.com">
+                                    <input class="form-control" type="email" name="email" required placeholder="nomi@gmail.com">
                                 </div>
                                 <div class="inputFields">
                                     <label>Phone</label>
-                                    <input class="form-control InputTypeNumber" type="number" name="phoneNumber"
+                                    <input class="form-control InputTypeNumber" type="number" required name="phoneNumber"
                                         placeholder="+923423597988">
                                 </div>
 
                                 <div class="inputFields">
                                     <label>Address</label>
                                     <input class="form-control" type="address" name="address"
-                                        placeholder="street no 12 thaid sarak hyderabad">
+                                        placeholder="street no 12 thaid sarak hyderabad" required>
                                 </div>
 
                                 <%if(errMsg){%>

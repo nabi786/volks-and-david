@@ -3,6 +3,8 @@ var express = require('express');
 var router = express.Router();
 var customerModel = require('../module/create-customer');
 var userModel = require('../module/userSign-up')
+const bcrypt = require('bcrypt');
+
 
 
 router.get("/:id", async function(req,res){
@@ -26,6 +28,7 @@ router.get("/:id", async function(req,res){
                     notApprovedUser.push(allusers[x])
                   }
                 }
+               
 
                   res.render('edit-user',{currentUser : currentUser, currentSelectedITem : currentSelectedITem, notApprovedUser: notApprovedUser.length});
               }
@@ -47,9 +50,11 @@ router.post("/", async function(req,res){
         var email  = req.body.email
         var phone = req.body.phoneNumber
         var password = req.body.password
-
+        
+        
         var selectedUser = await userModel.findOne({_id : id})
         
+
         userModel.findOneAndUpdate({_id : id},{
             userType: selectedUser.userType,
             userID : selectedUser.userID,

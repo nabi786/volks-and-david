@@ -4,6 +4,11 @@ var router = express.Router();
 var customerModel = require('../module/create-customer');
 var userModel = require('../module/userSign-up');
 
+
+
+
+
+
 router.get('/', async function (req, res, next) {
     try {
 
@@ -42,7 +47,7 @@ router.post('/', async function (req, res, next) {
         var phone = req.body.phoneNumber;
         var address = req.body.address;
 
-        var getDate = new Date();
+        var getDate = new Date().toLocaleDateString();;
 
 
         await customerModel.findOne({ email: email }).exec(function (err, data) {
@@ -70,7 +75,8 @@ router.post('/', async function (req, res, next) {
                         });
                     }else {
 
-                        res.render('create-customer', {errMsg : "data already exist"})
+                        res.redirect('create-customer');
+
                     }
 
 

@@ -53,23 +53,7 @@
                             <span class="headerTitle">
                                 Generate invoice
                             </span>
-                            <div class="selectCustomerDropDown">
-                                <select class="form-control selectCustomerList">
-                                    <option value="false">Select Customer</option>
-
-                                    <option value="true">New Invoice</option>
-                                    <%if(userDetial){%>
-                                        <option selected value="<%=userDetial._id%>">
-                                            <%=userDetial.name%>
-                                        </option>
-                                        <%}%>
-                                            <%for(var x=0; x< customerList.length; x++){%>
-                                                <option value="<%=customerList[x]._id%>">
-                                                    <%=customerList[x].name%>
-                                                </option>
-                                                <%}%>
-                                </select>
-                            </div>
+                           
                         </div>
                         <hr>
 
@@ -88,7 +72,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <label>Name:<span style="color: red;">*</span></label>
-                                        <input type="text" value="<%if(userDetial){%> <%=userDetial.name%> <%}%>"
+                                        <input type="text" value="<%=currentInvoice.Name%>"
                                             name="name" class="form-control" id="name">
 
                                     </div>
@@ -96,7 +80,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                                         <label>Address:<span style="color: red;">*</span></label>
                                         <input type="text" name="address"
-                                            value="<%if(userDetial){%> <%=userDetial.Address%> <%}%>"
+                                            value="<%=currentInvoice.Address%>"
                                             class="form-control" id="address">
                                         <span class="error"></span>
 
@@ -105,7 +89,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                                         <label>Email:<span style="color: red;">*</span></label>
                                         <input type="email" name="email"
-                                            value="<%if(userDetial){%> <%=userDetial.email%> <%}%>" class="form-control"
+                                            value="<%=currentInvoice.Email%>" class="form-control"
                                             id="email">
 
                                     </div>
@@ -113,44 +97,44 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                                         <label>Phone:<span style="color: red;">*</span></label>
                                         <input type="text" name="phone" class="form-control" id="phone"
-                                            value="<%if(userDetial){%> <%=userDetial.phone%> <%}%>">
+                                            value="<%=currentInvoice.Phone%>">
                                         <span id="validNumErrorMsg" style="color:red; font-size:10px;"></span>
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                                         <label>NTN No:<span style="color: red;">*</span></label>
-                                        <input type="text" name="ntnNum" class="form-control" id="ntnNumber">
+                                        <input type="text" value="<%=currentInvoice.NTNNumber%>" name="ntnNum" class="form-control" id="ntnNumber">
                                     </div>
 
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                                         <label>Invoice No:<span style="color: red;">*</span></label>
-                                        <input type="text" name="invoiceNum" class="form-control" id="invoiceNumber">
+                                        <input type="text" value="<%=currentInvoice.InvoiceNo%>" name="invoiceNum" class="form-control" id="invoiceNumber">
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                                         <label>INC No:<span style="color: red;">*</span></label>
-                                        <input type="text" name="incNum" class="form-control" id="incNumber">
+                                        <input type="text" value="<%=currentInvoice.INCNumber%>" name="incNum" class="form-control" id="incNumber">
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                                         <label>Date:<span style="color: red;">*</span></label>
-                                        <input type="text" placeholder="Select Date" name="date" class="form-control"
+                                        <input type="text" value="<%=currentInvoice.date%>" placeholder="Select Date" name="date" class="form-control"
                                             id="date">
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                                         <label>Payment Method:<span style="color: red;">*</span></label>
-                                        <input type="text" name="paymentMethod" class="form-control" id="paymentMethod">
+                                        <input type="text" value="<%=currentInvoice.Payment_Method%>" name="paymentMethod" class="form-control" id="paymentMethod">
                                     </div>
 
                                     <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
                                         <label>Account Title:<span style="color: red;">*</span></label>
-                                        <input type="text" name="AccountTitle" class="form-control" id="AccountTitle">
+                                        <input type="text" value="<%=currentInvoice.Account_Title%>" name="AccountTitle" class="form-control" id="AccountTitle">
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                                         <label>Account Number:<span style="color: red;">*</span></label>
-                                        <input type="number" name="AccountNumber" class="form-control InputTypeNumber"
+                                        <input type="number" value="<%=currentInvoice.Account_Number%>" name="AccountNumber" class="form-control InputTypeNumber"
                                             id="AccountNumber">
                                     </div>
 
@@ -220,7 +204,59 @@
                                 <hr>
                                 <div class="generateInvoiceSecondTable mt-2">
                                     <table style="width:100%;">
-                                        <tbody class="generateTableBody savedData" style="width: 100%;"></tbody>
+                                        <tbody class="generateTableBody savedData" style="width: 100%;">
+                                        <%for(var x =0; x < items.length; x++){%>
+                                            <div class="tableDiv"">
+                                                <div class="generateTableHead">
+            
+                                                    <h6>
+                                                        Description
+                                                    </h6>
+                                                    <h6>
+                                                        Qty
+                                                    </h6>
+                                                    <h6>
+                                                        Unit Price
+                                                    </h6>
+                                                    <h6>
+                                                        Total Price
+                                                    </h6>
+                                                    <h6>
+                                                        Discount
+                                                    </h6>
+                                                    <h6>
+                                                        Net Price
+                                                    </h6>
+            
+                                                </div>
+                                                <div class="generateTableBody">
+                                                    <div>
+                                                        <textarea type="text"  class="form-control"  readonly><%=items[x].description%></textarea>
+                                                    </div>
+                                                    <div>
+                                                        <input type="number" class="form-control" value="<%=items[x].qty%>" readonly>
+                                                    </div>
+                                                    <div>
+                                                        <input type="number"  class="form-control" value="<%=items[x].unitPrice%>" readonly>
+                                                    </div>
+                                                    <div>
+                                                        <input type="text"  class="form-control" value="<%=items[x].totalPrice%>" readonly>
+                                                    </div>
+                                                    <div>
+                                                        <input type="text" class="form-control" value="<%=items[x].discount%>" readonly>
+                                                    </div>
+                                                    <div>
+                                                        <input type="text" class="form-control" value="<%=items[x].netPrice%>" readonly>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                            
+                                                <button class="btn btn-danger deleteInvoiceItemBtn" style="display: block; width: 100%;">Delete Item</button>
+            
+                                            <hr>
+                                            <%}%>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -231,7 +267,7 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
                                     <label>Amount in Words:</label>
-                                    <input type="text" class="form-control" id="AmntInWords">
+                                    <input type="text" class="form-control"value="<%=currentInvoice.AmountInWords%>" id="AmntInWords">
                                 </div>
                             </div>
 
@@ -242,16 +278,16 @@
                                     <h3>Summary</h3>
                                     <div class="invoiceDeteDetialsItem">
                                         <span class="invoiceDateTitle"> SubTotal:</span>
-                                        <span style="color: black;" id="subTotal">0.00</span>
+                                        <span style="color: black;" id="subTotal"><%=currentInvoice.SubTotal%></span>
                                     </div>
                                     <div class="invoiceDeteDetialsItem">
                                         <span class="invoiceDateTitle"> Tax:</span>
                                         <span style="color: black;"><input type="number" class="InputTypeNumber"
-                                                value="0" id="addTax"></span>
+                                                value="<%=currentInvoice.Tax%>" id="addTax"></span>
                                     </div>
                                     <div class="invoiceDeteDetialsItem">
                                         <span class="invoiceDateTitle"> Total:</span>
-                                        <span style="color: black;" id="grandTotal">0.00</span>
+                                        <span style="color: black;" id="grandTotal"><%=currentInvoice.GrandTotal%></span>
                                     </div>
                                 </div>
 
@@ -430,9 +466,9 @@
             // grandTotal
             var subTotal = $("#subTotal").html();
             subTotal = parseInt(subTotal)
-            $('#grandTotal').html(subTotal + ".00");
             var addTax = document.getElementById('addTax');
-
+            
+            $('#grandTotal').html(subTotal+parseInt(addTax.value));
             addTax.addEventListener('input', function () {
                 var subTotal = $('#subTotal').html();
                 subTotal = parseInt(subTotal);
@@ -658,7 +694,7 @@
 
                         $.ajax({
                             type: 'POST',
-                            url: `/generate-invoice`,
+                            url: `/edit-invoice`,
                             data: {
                                 obj: JSON.stringify(obj)
                             },

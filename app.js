@@ -30,6 +30,7 @@ var deleteUser = require('./routes/delete-user')
 var deleteInvocie = require('./routes/deleteInvoice')
 var approveAccount = require('./routes/authentication')
 var approveuser = require('./routes/approve-user')
+var editInvoice = require('./routes/edit-invoice')
 
 
 
@@ -65,7 +66,7 @@ app.use('/deleteInvoice',deleteInvocie)
 app.use('/authentication', approveAccount)
 app.use('/notification', notification)
 app.use('/approve-user', approveuser)
-
+app.use('/edit-invoice', editInvoice)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
