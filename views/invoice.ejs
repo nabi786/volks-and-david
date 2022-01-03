@@ -337,7 +337,7 @@
             
         $('#downloadPDFBtn').click(function () {
             $('.notificationContentBox').addClass('printableInvoice')
-            $('.closePreviweBtn').css('display',"block")
+          
             $('#downloadPDFBtn').css('display',"none")
             // var options = {
             //     margin: 1,
@@ -352,9 +352,8 @@
         })
 
 
-        $('.closePreviweBtn').click(function () {
+        $('.notificationContentBox').click(function () {
             $('.notificationContentBox').removeClass('printableInvoice')
-            $('.closePreviweBtn').css('display',"none")
             $('#downloadPDFBtn').css('display',"block")
         })
     }

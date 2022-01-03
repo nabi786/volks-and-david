@@ -944,7 +944,7 @@ form{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: row-reverse;
+    
 }
 
 .invoiceTitle{
@@ -1349,6 +1349,248 @@ form{
 
 
 
+/* new update of generate invocie */
+.geneinvoiceHeader{
+    margin-bottom: 50px;
+}
+.geneinvoiceHeader h1{
+    font-size: 3.75rem;
+    color: black;
+}
+
+.file-upload {
+    background-color: #ffffff;
+    width: 350px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .file-upload-btn {
+    width: 100%;
+    margin: 0;
+    color: #fff;
+    background: #1FB264;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #15824B;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+  .file-upload-btn:hover {
+    background: #1AA059;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+  .file-upload-btn:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+  
+  
+  
+  .file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .image-upload-wrap {
+    border: 1px solid gray;
+    position: relative;
+  }
+  
+  
+  .image-title-wrap {
+    padding: 0 15px 15px 15px;
+    color: #222;
+  }
+  
+  .drag-text {
+    text-align: center;
+  }
+  
+  .drag-text h3 {
+    font-weight: 100;
+    text-transform: uppercase;
+    color:gray;
+    padding: 60px 0;
+  }
+  
+  .file-upload-image {
+    max-height: 100px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  
+  .uploadLogoBox{
+    border: 1px solid gray;
+    width: 250px;
+    height: 100px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+  }
+  .uploadLogoBox img{
+    width: 100%;
+  }
+  .uploadLogo label{
+    font-size: 15px;
+    background: dodgerblue;
+   
+ 
+    text-align: center;
+    display: block;
+    margin: auto;
+    color: #fff;
+    padding: 12px 0px;
+     }
+  
+  
+  
+  .uploadLogo input[type="file"] {
+    display: none;
+  }
+  
+  
+  
+
+  
+  .invoiceFormOuterBox{
+      display: flex;
+      justify-content: space-between;
+  }
+  
+  .invoiceForm{
+      /* border: 1px solid red; */
+      width: 47%;
+      
+  }
+  .invoiceForm h4{
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: black;
+  }
+  .invoiceForm label{
+      font-size: 14px;
+      color: black;
+  }
+  .invoiceForm input{
+      color: black;
+      font-size: 15px;
+  }
+  .invoiceForm input::placeholder{
+      color: rgb(155, 155, 155);
+      font-size: 15px;
+  }
+  .lable{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .lable label{
+      line-height: 15px;
+      display: block;
+
+      width: 100%;
+  }
+  
+  
+  
+  .invoiceItemTableHeadering{
+    display: flex;
+    border-top:1px solid black;
+    border-bottom: 1px solid black;
+    padding: 8px;
+    justify-content: space-between
+  }
+  .invoiceItemTableHeadering div{
+   width: 15%;
+  padding-right: 10px;
+  font-size: 12px;
+  }
+  
+  .dextitlelBox{
+    width: 40% !important;
+  }
+  
+  .invoiceItemTextFields{
+     border: none;
+  
+  }
+    .invoiceItemTextFields input{
+        font-size: 15px;
+    }
+    .invoiceItemTextFields textarea{
+        font-size: 15px;    
+    }
+
+  .inviceSubTotalSummaryInnerBox{
+    /* border: 1px solid red; */
+    width: 200px;
+    margin-left: auto;
+  }
+  .inviceSubTotalSummaryInnerBox div{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .addInvocieItemBtnList{
+    /* border: 1px solid red; */
+    padding-left: 5px;
+  }
+  .dltInvoiceItemBox{
+    display: flex;
+    
+    align-items: center;
+    width: 8% !important;
+  }
+
+
+  .inviceSubTotalSummaryInnerBox{
+      font-size: 14px;
+  }
+
+
+  .geneinvoicefooter .uploadLogo{
+      display: block;
+      margin-left: auto;
+      margin-top: 50px;
+      margin-bottom: 50px;
+  }
+
+  .generate_invoiceBtn{
+      padding: 12px 30px;
+      font-size: 15px;
+  }
+
+
+.invoiceItemTableHeadering2{
+    display: none;
+}
+ 
+
+  /* generate invoice new update ends */
+
+
+
+
+
+
 
 
 
@@ -1363,6 +1605,37 @@ form{
 
 
 /* RESPONSIVE DESING */
+@media only screen and (max-width:1000px){
+    .invoiceItemInnerTables{
+        display: flex;
+        flex-direction: row !important;
+    }
+    .invoiceItemTableHeadering{
+        flex-direction: column;
+    }
+    .generateInvoicetableBody{
+        width: 100%;
+    }
+    .generateInvoicetableBody div{
+        width: 100%;
+    }
+    .generateInvoicetableBody .dextitlelBox{
+        width: 100% !important;
+    }
+    .dltInvoiceItemBox{
+        margin-left: auto;
+        margin-right: 10px;
+    }
+    .addInvocieItemBtnList{
+        margin-top: 10px;
+    }
+    .invoiceItemTableHeadering2{
+        display: flex;
+        flex-direction: column;
+        border-top: none;
+    }
+   
+}
 
 @media only screen and (max-width:995px){
     .customerTableBox{
@@ -1425,6 +1698,18 @@ form{
     }
 
 
+}
+
+
+
+@media only screen and (max-width:800px){
+    .invoiceFormOuterBox{
+        flex-direction: column;
+    }
+    .invoiceForm{
+        width: 100%;
+    }
+   
 }
 
 

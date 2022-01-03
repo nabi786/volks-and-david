@@ -66,39 +66,7 @@ router.post('/', async function (req, res, next) {
 
   try {
 
-
-    var data = req.body.obj;
-    data = JSON.parse(data);
     
-    var number = Intl.NumberFormat('en-US')
-
-
-    var cookeData = req.cookies.jwt;
-    var currentUser = await userModel.find({_id : cookeData})
-    
-
-    var generatedInvoice = new generateInvoice({
-      userID : `${cookeData}`,
-      Name: data.name,
-      Address: data.address,
-      Email: data.email,
-      Phone: data.phone,
-      NTNNumber: data.ntnNumber,
-      InvoiceNo: data.invoiceNumber,
-      INCNumber: data.incNumber,
-      date: data.date,
-      InvoiceItem: data.InvoiceItems,
-      SubTotal: number.format(data.subTotal),
-      Tax:  number.format(data.Tax),
-      GrandTotal: number.format(data.grandTotal),
-      AmountInWords: data.AmntInWords,
-      Payment_Method: data.paymentMethod,
-      Account_Title: data.AccountTitle,
-      Account_Number: data.AccountNumber
-    });
-
-    await generatedInvoice.save()
-    res.redirect('/invoice-list')
 
 
   } catch (error) {
@@ -112,32 +80,32 @@ router.post('/', async function (req, res, next) {
 
 // generate invocie from cutomers list 
 router.get('/:id', async function (req, res, next) {
-  try {
+  // try {
 
-    var userID = req.params.id;
+  //   var userID = req.params.id;
 
-    var userDetial = await customersModel.findOne({ _id: userID });
-    var customerList = await customersModel.find();
+  //   var userDetial = await customersModel.findOne({ _id: userID });
+  //   var customerList = await customersModel.find();
     
 
-    var currentUser = await userModel.findOne({_id : req.cookies.jwt})
-      // console.log(currentUser)
+  //   var currentUser = await userModel.findOne({_id : req.cookies.jwt})
+  //     // console.log(currentUser)
 
-      var allusers = await userModel.find();
+  //     var allusers = await userModel.find();
 
-      var notApprovedUser = []
-      for(var x =0; x < allusers.length; x++){
-        if(allusers[x].approve == "false"){
-          notApprovedUser.push(allusers[x])
-        }
-      }
+  //     var notApprovedUser = []
+  //     for(var x =0; x < allusers.length; x++){
+  //       if(allusers[x].approve == "false"){
+  //         notApprovedUser.push(allusers[x])
+  //       }
+  //     }
 
-    res.render('generate-invoice', { userDetial: userDetial, customerList: customerList, currentUser : currentUser,notApprovedUser : notApprovedUser.length});
+  //   res.render('generate-invoice', { userDetial: userDetial, customerList: customerList, currentUser : currentUser,notApprovedUser : notApprovedUser.length});
     
 
-  } catch (error) {
+  // } catch (error) {
 
-  }
+  // }
 
 })
 

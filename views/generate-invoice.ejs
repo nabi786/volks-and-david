@@ -48,252 +48,398 @@
                 <div class="mainContentBar mt-2">
 
                     <div class="notificationOuterBox">
+                        <form method="post" action="/generate-invoice">
+                            <div class="notificationBoxHeader">
+                                <span class="headerTitle">
+                                    Generate invoice
+                                </span>
+                                <div class="selectCustomerDropDown">
+                                    <select class="form-control selectCustomerList">
+                                        <option value="false">Select Customer</option>
 
-                        <div class="notificationBoxHeader">
-                            <span class="headerTitle">
-                                Generate invoice
-                            </span>
-                            <div class="selectCustomerDropDown">
-                                <select class="form-control selectCustomerList">
-                                    <option value="false">Select Customer</option>
-
-                                    <option value="true">New Invoice</option>
-                                    <%if(userDetial){%>
-                                        <option selected value="<%=userDetial._id%>">
-                                            <%=userDetial.name%>
-                                        </option>
-                                        <%}%>
-                                            <%for(var x=0; x< customerList.length; x++){%>
-                                                <option value="<%=customerList[x]._id%>">
-                                                    <%=customerList[x].name%>
-                                                </option>
-                                                <%}%>
-                                </select>
+                                        <option value="true">New Invoice</option>
+                                        <%if(userDetial){%>
+                                            <option selected value="<%=userDetial._id%>">
+                                                <%=userDetial.name%>
+                                            </option>
+                                            <%}%>
+                                                <%for(var x=0; x< customerList.length; x++){%>
+                                                    <option value="<%=customerList[x]._id%>">
+                                                        <%=customerList[x].name%>
+                                                    </option>
+                                                    <%}%>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <hr>
+                            <hr>
 
-                        <div class="container" style="overflow:hidden;">
-
-
-                            <div class="generateInvoiceLogoSection">
-                                <div class="generateInvoiceLogo">
-                                    <img src="/upload/logo 4.png">
-                                </div>
-
-                            </div>
+                            <div class="container" style="overflow:hidden;">
 
 
-                            <form method="POST" class="generateInvoiceForm" id="invoiceForm">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <label>Name:<span style="color: red;">*</span></label>
-                                        <input type="text" value="<%if(userDetial){%> <%=userDetial.name%> <%}%>"
-                                            name="name" class="form-control" id="name">
-
+                                <div class="invoiceHeader geneinvoiceHeader">
+                                    <div>
+                                        <h1>Invoice</h1>
                                     </div>
-
-                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
-                                        <label>Address:<span style="color: red;">*</span></label>
-                                        <input type="text" name="address"
-                                            value="<%if(userDetial){%> <%=userDetial.Address%> <%}%>"
-                                            class="form-control" id="address">
-                                        <span class="error"></span>
-
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
-                                        <label>Email:<span style="color: red;">*</span></label>
-                                        <input type="email" name="email"
-                                            value="<%if(userDetial){%> <%=userDetial.email%> <%}%>" class="form-control"
-                                            id="email">
-
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
-                                        <label>Phone:<span style="color: red;">*</span></label>
-                                        <input type="text" name="phone" class="form-control" id="phone"
-                                            value="<%if(userDetial){%> <%=userDetial.phone%> <%}%>">
-                                        <span id="validNumErrorMsg" style="color:red; font-size:10px;"></span>
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
-                                        <label>NTN No:<span style="color: red;">*</span></label>
-                                        <input type="text" name="ntnNum" class="form-control" id="ntnNumber">
-                                    </div>
-
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
-                                        <label>Invoice No:<span style="color: red;">*</span></label>
-                                        <input type="text" name="invoiceNum" class="form-control" id="invoiceNumber">
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
-                                        <label>INC No:<span style="color: red;">*</span></label>
-                                        <input type="text" name="incNum" class="form-control" id="incNumber">
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
-                                        <label>Date:<span style="color: red;">*</span></label>
-                                        <input type="text" placeholder="Select Date" name="date" class="form-control"
-                                            id="date">
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
-                                        <label>Payment Method:<span style="color: red;">*</span></label>
-                                        <input type="text" name="paymentMethod" class="form-control" id="paymentMethod">
-                                    </div>
-
-                                    <div class="col-lg-6 col-md-6 col-sm-12 mt-3">
-                                        <label>Account Title:<span style="color: red;">*</span></label>
-                                        <input type="text" name="AccountTitle" class="form-control" id="AccountTitle">
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
-                                        <label>Account Number:<span style="color: red;">*</span></label>
-                                        <input type="number" name="AccountNumber" class="form-control InputTypeNumber"
-                                            id="AccountNumber">
+                                    <div class="uploadLogo">
+                                        <div class="uploadLogoBox">
+                                            <img id="output" />
+                                        </div>
+                                        <label>Upload Logo
+                                            <input type="file" accept="image/*" name="image" id="imgfile"
+                                                onchange="loadFile(event)" style="display:none;">
+                                        </label>
                                     </div>
 
                                 </div>
 
 
 
-                            </form>
 
 
 
-                            <div class="generateInvoiceTable mt-2">
 
-                                <div class="tableDiv">
-                                    <div class="generateTableHead">
-
-                                        <h6>
-                                            Description
-                                        </h6>
-                                        <h6>
-                                            Qty
-                                        </h6>
-                                        <h6>
-                                            Unit Price
-                                        </h6>
-                                        <h6>
-                                            Total Price
-                                        </h6>
-                                        <h6>
-                                            Discount
-                                        </h6>
-                                        <h6>
-                                            Net Price
-                                        </h6>
+                                <div class="invoiceFormOuterBox">
+                                    <div class="invoiceForm">
+                                        <h4>From</h4>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Name
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-12 col-md-9" style="margin-left: auto;">
+                                                <input name="cname" class="form-control" type="text"
+                                                    placeholder="Business Name" required>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Email
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input name="cemail" class="form-control" type="text"
+                                                    placeholder="volkanddavid@gmail.com" required>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Address
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input name="caddress" class="form-control" type="text"
+                                                    placeholder="Street" required>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Phone
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input name="cphone" class="form-control" type="number"
+                                                    placeholder="03423597555" required>
+                                            </div>
+                                        </div>
+                                        <br>
 
                                     </div>
-                                    <div class="generateTableBody">
-                                        <div>
-                                            <textarea type="text" name="description"
-                                                class="form-control gnInvoiceTblData description" style="max-height: auto;"></textarea>
+
+
+                                    <div class="invoiceForm">
+                                        <h4>To</h4>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Name
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input name="toname" class="form-control" type="text"
+                                                    placeholder="Client Name" required>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <input type="number" name="qty" class="form-control gnInvoiceTblData qty"
-                                                min="1">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Email
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input name="toemail" class="form-control" type="text"
+                                                    placeholder="name@client.com" required>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <input type="number" name="unitPrice"
-                                                class="form-control gnInvoiceTblData numberData unitPrice">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Address
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9 " style="margin-left: auto;">
+                                                <input name="toaddress" class="form-control" type="text"
+                                                    placeholder="Street" required>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <input type="text" name="totalPrice"
-                                                class="form-control gnInvoiceTblData numberData totalPrice">
-                                        </div>
-                                        <div>
-                                            <input type="text" name="discount"
-                                                class="form-control gnInvoiceTblData numberData discount">
-                                        </div>
-                                        <div>
-                                            <input type="text" name="netPrice"
-                                                class="form-control gnInvoiceTblData numberData netPrice">
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Phone
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input name="tophone" class="form-control" type="number"
+                                                    placeholder="0342355592" required>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="addRowBtn mt-2">
-                                    <button id="addMoreInvoiceItemBtn">Add More</button>
-                                </div>
+
                                 <hr>
-                                <div class="generateInvoiceSecondTable mt-2">
-                                    <table style="width:100%;">
-                                        <tbody class="generateTableBody savedData" style="width: 100%;"></tbody>
-                                    </table>
-                                </div>
-                            </div>
 
+                                <div class="invoiceFormOuterBox">
+                                    <div class="invoiceForm">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    NTN
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input class="form-control" type="number" placeholder="NTN Number"
+                                                    name="ntn" required>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Date
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input name="date" class="form-control" type="date"
+                                                    placeholder="Dec 12 2021" required>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3lable">
+                                                <label>
+                                                    INC
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input name="inc" class="form-control" type="number"
+                                                    placeholder="INC Number" required>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Invoice No
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input name="invoiceNo" class="form-control" type="number"
+                                                    placeholder="Invoice No" required>
+                                            </div>
+                                        </div>
+                                        <br>
 
-
-
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
-                                    <label>Amount in Words:</label>
-                                    <input type="text" class="form-control" id="AmntInWords">
-                                </div>
-                            </div>
-
-
-                            <div class="invoiceSummaryBox mt-5">
-
-                                <div class="invoiceSummary" style="margin-left: auto;">
-                                    <h3>Summary</h3>
-                                    <div class="invoiceDeteDetialsItem">
-                                        <span class="invoiceDateTitle"> SubTotal:</span>
-                                        <span style="color: black;" id="subTotal">0.00</span>
                                     </div>
-                                    <div class="invoiceDeteDetialsItem">
-                                        <span class="invoiceDateTitle"> Tax:</span>
-                                        <span style="color: black;"><input type="number" class="InputTypeNumber"
-                                                value="0" id="addTax"></span>
-                                    </div>
-                                    <div class="invoiceDeteDetialsItem">
-                                        <span class="invoiceDateTitle"> Total:</span>
-                                        <span style="color: black;" id="grandTotal">0.00</span>
+
+
+                                    <div class="invoiceForm">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Payment Method
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input class="form-control" type="text" placeholder="Jazz Cash"
+                                                    name="payment_method" required>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Account Title
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input name="account_title" class="form-control" type="text"
+                                                    placeholder="Amjad" required>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-sm-12 col-md-3 lable">
+                                                <label>
+                                                    Account No
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
+                                                <input name="account_no" class="form-control" type="number"
+                                                    placeholder="000066987678956" required>
+                                            </div>
+                                        </div>
+                                        <br>
+
                                     </div>
                                 </div>
+
+
+
+                                <!-- invoice items -->
+                                <div class="invoiceItemsTable">
+
+                                    <div class="invoiceItemInnerTables">
+
+                                        <div class="invoiceItemTableHeadering">
+                                            <div class="addInvocieItemBtnList">
+                                                <span style="visibility: hidden;">delet</span>
+                                            </div>
+                                            <div class="dextitlelBox">
+                                                Description
+                                            </div>
+                                            <div>
+                                                Qty
+                                            </div>
+                                            <div>
+                                                Unit Price
+                                            </div>
+                                            <div>
+                                                Total Price
+                                            </div>
+                                            <div>
+                                                Discount
+                                            </div>
+                                            <div>
+                                                Net Price
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="generateInvoicetableBody">
+
+                                            <div class="invoiceItemTableHeadering invoiceItemTextFields">
+
+                                                <div class="addInvocieItemBtnList dltInvoiceItemBox">
+                                                    <button type="button" class="btn btn-primary addMoreInvoiceBtn"
+                                                        id="addMoreInvoice">+</button>
+                                                </div>
+
+                                                <div class="dextitlelBox">
+                                                    <textarea class="form-control item_description" id="itemDes_0"
+                                                        style="resize: none;" required></textarea>
+                                                </div>
+                                                <div>
+                                                    <input id="itemQty_0" type="number" class="form-control qty" min="0"
+                                                        required>
+                                                </div>
+                                                <div>
+                                                    <input type="number" class="form-control unitPrice" min="0"
+                                                        id="itemUnitePrice_0" required>
+
+                                                </div>
+                                                <div>
+                                                    <input type="number" class="form-control totalPrice" min="0"
+                                                        id="totalPrice_0" value="0" required>
+                                                </div>
+                                                <div>
+                                                    <input type="number" class="form-control discount" min="0" value="0"
+                                                        id="discount_0" required>
+                                                </div>
+                                                <div>
+                                                    <input type="number" class="form-control netPrice" min="0" value="0"
+                                                        id="netPrice_0" required>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="invoiceItemInnerTables2"></div>
+                                </div>
+
+
+                                <br>
+                                <hr>
+                                <div class="invoiceSubTotalSummary">
+                                    <div class="inviceSubTotalSummaryInnerBox">
+                                        <div>
+                                            <span>
+                                                Subtotal
+                                            </span>
+                                            <span>
+                                                0.00
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span>
+                                                Tax
+                                            </span>
+                                            <span>
+                                                0.00
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span>
+                                                Total
+                                            </span>
+                                            <span>
+                                                0.00
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span>
+                                                Balance Due
+                                            </span>
+                                            <span>
+                                                0.00
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="invoiceHeader geneinvoicefooter">
+                                    <div class="uploadLogo">
+                                        <div class="uploadLogoBox">
+                                            <img id="output2" />
+                                        </div>
+                                        <label>Upload Logo
+                                            <input type="file" accept="image/*" name="image" id="imgfile"
+                                                onchange="loadFile2(event)" style="display:none;">
+                                        </label>
+                                    </div>
+
+                                </div>
+
+
+
+
+                                <button type="submit" class="btn btn-primary generate_invoiceBtn"
+                                    style="display: block; margin: auto;">Submit</button>
+
 
                             </div>
-                            <input type="submit" class="generateInviceBtn" value="Generate Invoice"
-                                id="generateInviceBtn">
-
-                                
-                            <div class="invoiceSummary mt-5" style="font-size: 13px;">
-                                <div class="invoiceDeteDetialsItem" style="border: none;">
-                                    <span class="invoiceDateTitle">Address:</span>
-                                    <span style="color: black;">
-                                        Office No.4, 1st Floor, Al-Rehman Center, 70-Ferozepur Road, Shama Stop, Lahore
-                                    </span>
-                                </div>
-                                <div class="invoiceDeteDetialsItem" style="border: none;">
-                                    <span class="invoiceDateTitle">Phone:</span>
-                                    <span style="color: black;">
-                                        0302-2999904 / 042-37420169
-                                    </span>
-                                </div>
-                                <div class="invoiceDeteDetialsItem" style="border: none;">
-                                    <span class="invoiceDateTitle">Web:</span>
-                                    <span style="color: black;">
-                                        volksanddavid.com
-                                    </span>
-                                </div>
-                                <div class="invoiceDeteDetialsItem" style="border: none;">
-                                    <span class="invoiceDateTitle">Email:</span>
-                                    <span style="color: black;">
-                                        info@volksanddavid.com
-                                    </span>
-                                </div>
-
-                            </div>
-
-
-
-
-
-
-                        </div>
+                        </form>
                     </div>
 
 
@@ -330,378 +476,197 @@
 
 <script>
 
-    $(document).ready(function () {
 
 
-        var savedData = document.getElementsByClassName('savedData')[0]
-        function sessionData() {
-            var data = sessionStorage.getItem('data')
-            if (data) {
-                data = JSON.parse(data)
-                var html = "";
-                data.forEach(function (data, index) {
+        function addItemsInList() {
+            var aryData = sessionStorage.getItem('itemAry')
+            aryData = JSON.parse(aryData);
 
-                    html += `<div class="tableDiv"">
-                                    <div class="generateTableHead">
-
-                                        <h6>
-                                            Description
-                                        </h6>
-                                        <h6>
-                                            Qty
-                                        </h6>
-                                        <h6>
-                                            Unit Price
-                                        </h6>
-                                        <h6>
-                                            Total Price
-                                        </h6>
-                                        <h6>
-                                            Discount
-                                        </h6>
-                                        <h6>
-                                            Net Price
-                                        </h6>
-
+            if (aryData) {
+               
+                var invoiceItemsTable = document.getElementsByClassName('invoiceItemInnerTables2')[0]
+                
+                
+                var html="";
+                aryData.forEach(function (item, index) {
+                    html += `<div class="invoiceItemInnerTables" id="invoiceItemInnerTables_${index}">
+                                <div class="invoiceItemTableHeadering">
+                                    <div class="addInvocieItemBtnList">
+                                        <span style="visibility: hidden;">delet</span>
                                     </div>
-                                    <div class="generateTableBody">
-                                        <div>
-                                            <textarea type="text"  class="form-control"  readonly>${data.description}</textarea>
-                                        </div>
-                                        <div>
-                                            <input type="number" class="form-control" value="${data.qty}" readonly>
-                                        </div>
-                                        <div>
-                                            <input type="number"  class="form-control" value="${data.unitPrice}" readonly>
-                                        </div>
-                                        <div>
-                                            <input type="text"  class="form-control" value="${data.totalPrice}" readonly>
-                                        </div>
-                                        <div>
-                                            <input type="text" class="form-control" value="${data.discount}" readonly>
-                                        </div>
-                                        <div>
-                                            <input type="text" class="form-control" value="${data.netPrice}" readonly>
-                                        </div>
+                                    <div class="dextitlelBox">
+                                        Description
                                     </div>
-                                   
+                                    <div>
+                                        Qty
+                                    </div>
+                                    <div>
+                                        Unit Price
+                                    </div>
+                                    <div>
+                                        Total Price
+                                    </div>
+                                    <div>
+                                        Discount
+                                    </div>
+                                    <div>
+                                        Net Price
+                                    </div>
                                 </div>
-                                
-                                    <button  class="btn btn-danger deleteInvoiceItemBtn">Delete Item</button>
 
-                                <hr>
-                                `
+                                <div class="generateInvoicetableBody">
 
+                                    <div class="invoiceItemTableHeadering invoiceItemTextFields"
+                                        id="invoiceItemTextFields_${index}">
+                                        <div class="addInvocieItemBtnList dltInvoiceItemBox">
+                                            <button type="button"  class="btn btn-danger dltItem" id="dltItem_${index}">x</button>
+                                        </div>
+                                        <div class="dextitlelBox">
+                                            <textarea class="form-control item_description"
+                                             style="resize: none;" required>${item.itemDes_0}</textarea>
+                                        </div>
+                                        <div>
+                                            <input  type="number" value="${item.itemQty_0}" class="form-control qty" min="0" required>
+                                        </div>
+                                        <div>
+                                            <input type="number" class="form-control unitPrice" min="0"
+                                            value="${item.itemUnitePrice_0}" required>
+
+                                        </div>
+                                        <div>
+                                            <input type="number" class="form-control totalPrice" min="0"
+                                             value="${item.totalPrice_0}" required>
+                                        </div>
+                                        <div>
+                                            <input type="number" class="form-control discount" min="0" 
+                                            value="${item.discount_0}" required>
+                                        </div>
+                                        <div>
+                                            <input type="number" class="form-control netPrice" min="0" 
+                                             value="${item.netPrice_0}" required>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                </div>` ;
+
+                invoiceItemsTable.innerHTML = html 
                 })
-                savedData.innerHTML = html
-
-
+                
             }
-
-
         }
 
-        sessionData()
+       addItemsInList()
+    
 
 
+            var addMoreInvoice = document.getElementById('addMoreInvoice');
 
-        // maing subTotal and Total Price
-        function subTotalPrice() {
-            var Itmes = sessionStorage.getItem('data');
-            Itmes = JSON.parse(Itmes);
-            if (Itmes != null) {
+            addMoreInvoice.addEventListener('click', function (){
+                   
+                var itemDes_0 = document.getElementById('itemDes_0').value;
+                var itemQty_0 = document.getElementById('itemQty_0').value;
+                var itemUnitePrice_0 = document.getElementById('itemUnitePrice_0').value;
+                var totalPrice_0 = document.getElementById('totalPrice_0').value;
+                var discount_0 = document.getElementById('discount_0').value;
+                var netPrice_0 = document.getElementById('netPrice_0').value;
 
-                if (Itmes.length > 0) {
-                    allPrices = []
-                    Itmes.forEach(function (item, index) {
-                        allPrices.push(item.netPrice)
-                    });
-                    sum = allPrices.reduce(function (a, b) { return JSON.parse(a) + JSON.parse(b); });
+                var itemOBject = "";
 
-                    $("#subTotal").html(sum + ".00")
+                    if (itemDes_0 != "" && itemQty_0 != "" && itemUnitePrice_0 != "" && totalPrice_0 != "" && discount_0 != "" && netPrice_0 != "") {
+                        
+                        itemOBject = {
+                            itemDes_0: itemDes_0,
+                            itemQty_0: itemQty_0,
+                            itemUnitePrice_0: itemUnitePrice_0,
+                            totalPrice_0: totalPrice_0,
+                            discount_0: discount_0,
+                            netPrice_0: netPrice_0,
+                        }
 
-                }
-            }
+                   
+                        var localAry = sessionStorage.getItem('itemAry');
+                        if (localAry == null) {
+                            
+                            var ary = []
+                        }else{
+                            
+                            var ary = JSON.parse(localAry)
+                            console.log(ary)
+                        }
+                  
+                        ary.push(itemOBject)
+                        ary.reverse()
+                        sessionStorage.setItem('itemAry', JSON.stringify(ary));
 
-        } subTotalPrice();
-
-
-        function grandTotal() {
-            // grandTotal
-            var subTotal = $("#subTotal").html();
-            subTotal = parseInt(subTotal)
-            $('#grandTotal').html(subTotal + ".00");
-            var addTax = document.getElementById('addTax');
-
-            addTax.addEventListener('input', function () {
-                var subTotal = $('#subTotal').html();
-                subTotal = parseInt(subTotal);
-
-                var addTax = $('#addTax').val();
-                if (addTax != "") {
-                    addTax = parseInt(addTax);
-                    var total = addTax + subTotal
-                    $("#grandTotal").html(total + ".00");
-                }
-
-            });
-
-        } grandTotal()
-
-
-
-
-
-        // When user click on add button
-        var description = document.getElementsByClassName('description')[0];
-        var qty = document.getElementsByClassName('qty')[0]
-        var unitPrice = document.getElementsByClassName('unitPrice')[0]
-        var totalPrice = document.getElementsByClassName('totalPrice')[0]
-        var discount = document.getElementsByClassName('discount')[0]
-        var netPrice = document.getElementsByClassName('netPrice')[0];
-        var AmntInWords = document.getElementById('AmntInWords')
-        function addMoreBtn() {
-            $('#addMoreInvoiceItemBtn').click(function () {
-
-               
-               
-                if (description.value != "" && qty != "" && unitPrice.value != "" && totalPrice.value != "" && discount.value != "" && netPrice.value != "") {
-
-                    var getDataFromSession = sessionStorage.getItem('data');
-                    var data = {
-                        description: description.value,
-                        qty: qty.value,
-                        unitPrice: unitPrice.value,
-                        totalPrice: totalPrice.value,
-                        discount: discount.value,
-                        netPrice: netPrice.value
+                        
+                         document.getElementById('itemDes_0').value = "";
+                        document.getElementById('itemQty_0').value = "";
+                        document.getElementById('itemUnitePrice_0').value = "";
+                        document.getElementById('totalPrice_0').value = "";
+                        document.getElementById('discount_0').value = "";
+                       document.getElementById('netPrice_0').value = "";
+                        
+                      addItemsInList()
                     }
-                    if (getDataFromSession == null) {
-                        var tableData = [];
-                        tableData.push(data)
-                        sessionStorage.setItem('data', JSON.stringify(tableData))
-                    } else {
-                        getDataFromSession = JSON.parse(getDataFromSession);
-                        getDataFromSession.push(data)
-                        sessionStorage.setItem('data', JSON.stringify(getDataFromSession))
-
-                    }
-
-                    description.value = ""
-                    qty.value = ""
-                    unitPrice.value = ""
-                    totalPrice.value = ""
-                    discount.value = ""
-                    netPrice.value = ""
-
-                    sessionData();
-
-                }
-
-                subTotalPrice();
-                grandTotal()
+                   
             })
 
-        } addMoreBtn()
+
+    
 
 
-
-
-        // automatic generate unite price and total price
-        setInterval(function () {
-            totalPrice.value = qty.value * unitPrice.value
-        }, 500)
-        setInterval(function () {
-            netPrice.value = totalPrice.value - discount.value
-        }, 500)
-
-
-
-
-
-
-
-
-        // here if user want to dlete his saved data
-        setInterval(function () {
-
-            var deleteInvoiceItemBtn = document.getElementsByClassName('deleteInvoiceItemBtn');
-            if (deleteInvoiceItemBtn) {
-                var data = sessionStorage.getItem('data')
-                data = JSON.parse(data)
-                deleteInvoiceItemBtn = Array.from(deleteInvoiceItemBtn);
-                deleteInvoiceItemBtn.forEach(function (btn, index) {
-                    btn.addEventListener('click', function () {
-                        console.log(index)
-                        var currentData = data[index];
-                        data.splice(index, 1)
-                        sessionStorage.setItem('data', JSON.stringify(data));
-                        sessionData();
-                        subTotalPrice();
-                        grandTotal()
-                    });
-
-                })
-
-            };
-
-        }, 1000);
-
-
-
-
-
-
-        // submit form
-        var invoiceForm = document.getElementById('invoiceForm').elements;
-        invoiceForm = Array.from(invoiceForm);
-        invoiceForm.forEach(function (input, index) {
-            if (input.name == "email") {
-
-                input.addEventListener('blur', function () {
-
-                    function validateEmail(email) {
-                        var re = /\S+@\S+\.\S+/;
-                        return re.test(email);
-                    };
-
-                    var validEmail = validateEmail(input.value)
-                    if (validEmail == true) {
-                        input.style.border = "1px solid lightgray"
-                    } else {
-                        input.style.border = "1px solid red"
-                    }
-
-                });
-            }
-
-            if (input.name == "phone") {
-
-                input.addEventListener('blur', function () {
-                    var regex = /^\d*[.]?\d*$/;
-                    var value = input.value;
-                    var result = regex.test(value)
-                    if (result == true) {
-                        if (value.length > 10) {
-                            input.style.border = '1px solid lightgray';
-                            $('#validNumErrorMsg').html('')
-
-                        } else {
-                            $('#validNumErrorMsg').html('please enter valid number')
-                        }
-                    } else {
-                        input.style.border = "1px solid red";
-                        $('#validNumErrorMsg').html('please enter valid number')
-                    }
-                });
-
-            };
-
-            if (input.name == "date") {
-                input.addEventListener('focus', function () {
-                    input.type = "date";
-                });
-            }
-
-
+          
+    // delete data from sessions storage
+    function deleteItem() {
+        
+        var dltItem = document.getElementsByClassName('dltItem')
+        dltItem = Array.from(dltItem)
+        dltItem.forEach(function (btn,index) {
+            console.log(index)
+            var deleteBtn = document.getElementById(`dltItem_${index}`)
+            deleteBtn.addEventListener('click', function(){
+                var ary = sessionStorage.getItem('itemAry')
+                ary = JSON.parse(ary)
+                console.log('working')
+                ary.splice(index,1);
+                console.log(ary)
+              
+                sessionStorage.setItem('itemAry',JSON.stringify(ary))
+                addItemsInList()
+            })
+            
         });
 
-
-
-
-
-        function generateInvoiceBtn() {
-            $('#generateInviceBtn').click(function () {
-
-                var name = $('#name').val();
-                var address = $('#address').val();
-                var email = $('#email').val();
-                var phone = $("#phone").val();
-                var ntnNumber = $("#ntnNumber").val();
-                var invoiceNumber = $('#invoiceNumber').val();
-                var incNumber = $("#incNumber").val();
-                var date = $("#date").val();
-                var AmntInWords = $('#AmntInWords').val();
-                var paymentMethod = $('#paymentMethod').val();
-                var AccountTitle = $('#AccountTitle').val();
-                var AccountNumber = $('#AccountNumber').val();
-
-                if (name != "" && address != "" && email != "" && phone != "" && ntnNumber != "" && invoiceNumber != "" && incNumber != "" && date != "" && AmntInWords != "" && paymentMethod != "" && AccountNumber != "" && AccountTitle != "") {
-
-                    var tableData = sessionStorage.getItem('data');
-                    tableData = JSON.parse(tableData);
-                    var subTotal = $('#subTotal').html();
-                    var grandTotal = $('#grandTotal').html()
-                    var tax = $('#addTax').val()
-
-
-                    if (tableData.length > 0) {
-
-                        var obj = {
-                            name: name,
-                            address: address,
-                            email: email,
-                            phone: phone,
-                            ntnNumber: ntnNumber,
-                            invoiceNumber: invoiceNumber,
-                            incNumber: incNumber,
-                            date: date,
-                            InvoiceItems: JSON.stringify(tableData),
-                            subTotal: subTotal,
-                            Tax: tax,
-                            grandTotal: grandTotal,
-                            AmntInWords: AmntInWords,
-                            paymentMethod: paymentMethod,
-                            AccountTitle: AccountTitle,
-                            AccountNumber: AccountNumber
-                        };
-
-                        $.ajax({
-                            type: 'POST',
-                            url: `/generate-invoice`,
-                            data: {
-                                obj: JSON.stringify(obj)
-                            },
-                        });
-
-                        sessionStorage.removeItem('data');
-                        window.location.href = '/invoice-list'
-
-                    } else {
-                        alert('please add invoice items')
-                    }
-
-                } else {
-                    alert('Please fill the form first')
-                }
-
-
-            })
-        }
-        generateInvoiceBtn();
+    }
+    setInterval(function () {
+        deleteItem()
+    },500)
+  
 
 
 
 
 
-        // select cutomers
-        var selectCustomerList = document.getElementsByClassName('selectCustomerList')[0]
 
-        selectCustomerList.addEventListener('change', function () {
+    // previewImg
 
-            if (selectCustomerList.value == "true") {
-                window.location.href = `/generate-invoice`;
-            } else if (selectCustomerList.value == "false") {
-                window.location.href = `/generate-invoice`;
-            } else {
-                window.location.href = `/generate-invoice/${selectCustomerList.value}`;
-            }
 
-        })
+    var loadFile = function (event) {
+        var image = document.getElementById('output');
+        image.src = URL.createObjectURL(event.target.files[0]);
+        console.log(event.target.files[0])
+    };
 
-        // checking if their is current user bcz I want to add that same user in to select option
+    var loadFile2 = function (event) {
+        var image = document.getElementById('output2');
+        image.src = URL.createObjectURL(event.target.files[0]);
+        console.log(event.target.files[0])
 
-    })
+    };
+
+
+
 
 </script>
 
