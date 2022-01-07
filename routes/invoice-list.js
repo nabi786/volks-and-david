@@ -22,16 +22,16 @@ router.get('/', async function (req, res, next) {
         }
         
         var invoiceData = invoiceData.reverse();
-        
+            
         var names = []
         for (var x = 0; x < invoiceData.length; x++) {
-            data = invoiceData[x].Name
+            data = invoiceData[x].ToName
             data = data.replace(" ", "-").toLowerCase()
             names.push(data)
         }
 
         var links = names;
-
+        
 
         // getting cutomers list fro model
         customersModel.find().exec(async function (err, data) {
@@ -43,7 +43,7 @@ router.get('/', async function (req, res, next) {
 
                 var customers = data;
                 if (cookeData) {
-                    
+                        
                     if(currentUser.approve == "false"){
 
                         res.redirect('/authentication')

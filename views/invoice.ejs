@@ -68,7 +68,7 @@
 
                             <div class="invoiceHeader">
                                 <div class="invoiceLogo">
-                                    <img src="/upload/logo 3.png">
+                                    <img src="/uploads/<%=currentInvoice.companyLogo%>">
                                 </div>
                                 <div class="invoiceTitle">
                                     <h3>Invoice</h3>
@@ -83,29 +83,30 @@
                                 <div class="invoiceSummary ownerDetials" style="font-size: 15px;">
                                     <h3>Invoice From</h3>
                                     <div class="invoiceDeteDetialsItem" style="border: none;">
+                                        
                                         <span >
-                                            Office No.4, 1st Floor, Al-Rehman Center, 70-Ferozepur Road, Shama Stop, Lahore
+                                           <h3><%=currentInvoice.OwnName%></h3>
+                                        </span>
+                                    </div>
+                                    <div class="invoiceDeteDetialsItem" style="border: none;">
+                                        
+                                        <span >
+                                            <%=currentInvoice.OwnAddress%>
                                         </span>
                                     </div>
                                     <div class="invoiceDeteDetialsItem" style="border: none;">
                                     
                                         <span >
-                                            0302-2999904 / 042-37420169
+                                            <%=currentInvoice.OwnPhone%>
                                         </span>
                                     </div>
                                     <div class="invoiceDeteDetialsItem" style="border: none;">
                                       
                                         <span >
-                                            volksanddavid.com
+                                            <%=currentInvoice.OwnEmail%>
                                         </span>
                                     </div>
-                                    <div class="invoiceDeteDetialsItem" style="border: none;">
-                                       
-                                        <span >
-                                            info@volksanddavid.com
-                                        </span>
-                                    </div>
-    
+                                    
                                 </div>
 
                                 
@@ -137,7 +138,7 @@
                                         <div class="invoiceDeteDetialsItem">
                                             <span class="invoiceDateTitle">Date:</span>
                                             <span>
-                                                <%=currentInvoice.date%>
+                                                    <%=currentInvoice.date%>
                                             </span>
                                         </div>
                                         <div class="invoiceDeteDetialsItem invoiceAmmount">
@@ -157,16 +158,16 @@
                             <div class="billToBox">
                                 <h3>Invoice To</h3>
                                 <h4 class="billToName">
-                                    <%=currentInvoice.Name%>
+                                    <%=currentInvoice.ToName%>
                                 </h4>
                                 <p> <span>
-                                        <%=currentInvoice.Address%>
+                                        <%=currentInvoice.ToAddress%>
                                     </span></p>
                                 <p><span>
-                                        <%=currentInvoice.Phone%>
+                                        <%=currentInvoice.ToPhone%>
                                     </span></p>
                                 <p><span>
-                                        <%=currentInvoice.Email%>
+                                        <%=currentInvoice.ToEmail%>
                                     </span></p>
                                
                             </div>
@@ -207,24 +208,24 @@
                                                 </td>
                                                 <td class="invoiceItemDescriptionBox">
                                                    
-                                                        <%=InvoiceItem[x].description%>
+                                                        <%=InvoiceItem[x].itemDes_0%>
                                                     
                                                 </td>
                                                 <td>
-                                                    <%=InvoiceItem[x].qty%>
+                                                    <%=InvoiceItem[x].itemQty_0%>
 
                                                 </td>
                                                 <td>
-                                                    <%=InvoiceItem[x].unitPrice%>.00
+                                                    <%=InvoiceItem[x].itemUnitePrice_0%>.00
                                                 </td>
                                                 <td>
-                                                    <%=InvoiceItem[x].totalPrice%>.00
+                                                    <%=InvoiceItem[x].totalPrice_0%>.00
                                                 </td>
                                                 <td>
-                                                    <%=InvoiceItem[x].discount%>
+                                                    <%=InvoiceItem[x].discount_0%>
                                                 </td>
                                                 <td>
-                                                    <%=InvoiceItem[x].netPrice%>.00
+                                                    <%=InvoiceItem[x].netPrice_0%>.00
                                                 </td>
                                             </tr>
                                             <%}%>
@@ -249,7 +250,7 @@
                                         </span>
                                     </div>
                                     <div class="invoiceDeteDetialsItem">
-                                        <span class="invoiceDateTitle"> Balance Due:</span>
+                                        <span class="invoiceDateTitle">Total</span>
                                         <span>
                                             <%=currentInvoice.GrandTotal%>.00
                                         </span>
@@ -261,17 +262,40 @@
 
                             </div>
                           
+                            <hr>
+                            <div class="invoiceSummaryBox mt-2">
 
-                           
 
-                            <div class="amountInWord">
-                                <div class="amountInWordBox1">
-                                    Amount in Words:
+                                <div class="invoiceSummary" style="margin-right: auto;">
+                                    <h3>Payment Method</h3>
+                                    <div class="invoiceDeteDetialsItem">
+                                        <span class="invoiceDateTitle"> <%=currentInvoice.Payment_Method%></span>
+                                        <!-- <span>
+                                            <%=currentInvoice.SubTotal%>.00
+                                        </span> -->
+                                    </div>
+                                    <div class="invoiceDeteDetialsItem">
+                                        <span class="invoiceDateTitle">Account Title</span>
+                                        <span>
+                                            <%=currentInvoice.Account_Title%>
+                                        </span>
+                                    </div>
+                                    <div class="invoiceDeteDetialsItem">
+                                        <span class="invoiceDateTitle"> Accoutn Numer:</span>
+                                        <span>
+                                            <%=currentInvoice.Account_Number%>
+                                        </span>
+                                    </div>
                                 </div>
-                                <div class="amountInWordBox2">
-                                    <%=currentInvoice.AmountInWords%>
+
+
+                                <div class="signatureLogo">
+                                    <img src="/uploads/<%=currentInvoice.signature%>">
                                 </div>
+
                             </div>
+
+                            
                             <hr>
                             
 

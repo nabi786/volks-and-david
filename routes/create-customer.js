@@ -46,7 +46,7 @@ router.post('/', async function (req, res, next) {
         var email = req.body.email;
         var phone = req.body.phoneNumber;
         var address = req.body.address;
-
+        console.log(name)
         var getDate = new Date().toLocaleDateString();;
 
 

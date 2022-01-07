@@ -1586,8 +1586,33 @@ form{
 
   /* generate invoice new update ends */
 
+.addTaxFieldGNinoice{
+    width: 80px;
+    border: none;
+     border-bottom: 1px solid gray;
+}
 
+.addTaxFieldGNinoice:focus{
+    outline: none;
+}
 
+.invoiceLogo{
+    /* border: 1px solid red; */
+    max-width: 350px;
+    min-width: auto;
+  
+}
+.invoiceLogo img{
+    width: 100%;
+}
+
+.signatureLogo{
+    /* border: 1px solid red; */
+    width: 250px;
+}
+.signatureLogo img{
+    width: 100%;
+}
 
 
 
@@ -1781,6 +1806,9 @@ form{
 
 
 @media only screen and (max-width:550px){
+    /* .invoiceLogo{
+         width: 100%;
+    } */
     .invoiceLogo img{
         width: 100%;
     }

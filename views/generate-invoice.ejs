@@ -48,7 +48,7 @@
                 <div class="mainContentBar mt-2">
 
                     <div class="notificationOuterBox">
-                        <form method="post" action="/generate-invoice">
+                        <form method="POST" action="" enctype="multipart/form-data">
                             <div class="notificationBoxHeader">
                                 <span class="headerTitle">
                                     Generate invoice
@@ -85,8 +85,8 @@
                                             <img id="output" />
                                         </div>
                                         <label>Upload Logo
-                                            <input type="file" accept="image/*" name="image" id="imgfile"
-                                                onchange="loadFile(event)" style="display:none;">
+                                            <input type="file" accept="image/*" name="uploadLogofile" id="uploadLogo"
+                                                onchange="loadFile(event)" style="display:none;" required>
                                         </label>
                                     </div>
 
@@ -108,7 +108,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-12 col-md-9" style="margin-left: auto;">
-                                                <input name="cname" class="form-control" type="text"
+                                                <input id="cName" name="cname" class="form-control" type="text"
                                                     placeholder="Business Name" required>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input name="cemail" class="form-control" type="text"
+                                                <input id="cemail" name="cemail" class="form-control" type="text"
                                                     placeholder="volkanddavid@gmail.com" required>
                                             </div>
                                         </div>
@@ -132,7 +132,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input name="caddress" class="form-control" type="text"
+                                                <input id="caddress" name="caddress" class="form-control" type="text"
                                                     placeholder="Street" required>
                                             </div>
                                         </div>
@@ -144,7 +144,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input name="cphone" class="form-control" type="number"
+                                                <input id="cphone" name="cphone" class="form-control" type="number"
                                                     placeholder="03423597555" required>
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input name="toname" class="form-control" type="text"
+                                                <input id="toname" name="toname" class="form-control" type="text"
                                                     placeholder="Client Name" required>
                                             </div>
                                         </div>
@@ -174,7 +174,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input name="toemail" class="form-control" type="text"
+                                                <input id="toemail" name="toemail" class="form-control" type="text"
                                                     placeholder="name@client.com" required>
                                             </div>
                                         </div>
@@ -186,7 +186,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9 " style="margin-left: auto;">
-                                                <input name="toaddress" class="form-control" type="text"
+                                                <input id="toaddress" name="toaddress" class="form-control" type="text"
                                                     placeholder="Street" required>
                                             </div>
                                         </div>
@@ -198,7 +198,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input name="tophone" class="form-control" type="number"
+                                                <input id="tophone" name="tophone" class="form-control" type="number"
                                                     placeholder="0342355592" required>
                                             </div>
                                         </div>
@@ -216,8 +216,8 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input class="form-control" type="number" placeholder="NTN Number"
-                                                    name="ntn" required>
+                                                <input id="ntn" class="form-control" type="number" placeholder="NTN Number"
+                                                    name="ntn">
                                             </div>
                                         </div>
                                         <br>
@@ -228,7 +228,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input name="date" class="form-control" type="date"
+                                                <input id="date" name="date" class="form-control" type="date"
                                                     placeholder="Dec 12 2021" required>
                                             </div>
                                         </div>
@@ -240,8 +240,8 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input name="inc" class="form-control" type="number"
-                                                    placeholder="INC Number" required>
+                                                <input id="inc" name="inc" class="form-control" type="number"
+                                                    placeholder="INC Number">
                                             </div>
                                         </div>
                                         <br>
@@ -252,7 +252,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input name="invoiceNo" class="form-control" type="number"
+                                                <input id="invoiceNo" name="invoiceNo" class="form-control" type="number"
                                                     placeholder="Invoice No" required>
                                             </div>
                                         </div>
@@ -269,7 +269,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input class="form-control" type="text" placeholder="Jazz Cash"
+                                                <input id="payment_method" class="form-control" type="text" placeholder="Jazz Cash"
                                                     name="payment_method" required>
                                             </div>
                                         </div>
@@ -281,7 +281,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input name="account_title" class="form-control" type="text"
+                                                <input id="account_title"  name="account_title" class="form-control" type="text"
                                                     placeholder="Amjad" required>
                                             </div>
                                         </div>
@@ -293,7 +293,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input name="account_no" class="form-control" type="number"
+                                                <input id="account_no" name="account_no" class="form-control" type="number"
                                                     placeholder="000066987678956" required>
                                             </div>
                                         </div>
@@ -303,6 +303,7 @@
                                 </div>
 
 
+                                <input type="text" name="ItemList" id="AllsessionData" style="display:none;">
 
                                 <!-- invoice items -->
                                 <div class="invoiceItemsTable">
@@ -346,28 +347,28 @@
 
                                                 <div class="dextitlelBox">
                                                     <textarea class="form-control item_description" id="itemDes_0"
-                                                        style="resize: none;" required></textarea>
+                                                        style="resize: none;"></textarea>
                                                 </div>
                                                 <div>
                                                     <input id="itemQty_0" type="number" class="form-control qty" min="0"
-                                                        required>
+                                                        >
                                                 </div>
                                                 <div>
                                                     <input type="number" class="form-control unitPrice" min="0"
-                                                        id="itemUnitePrice_0" required>
+                                                        id="itemUnitePrice_0" >
 
                                                 </div>
                                                 <div>
                                                     <input type="number" class="form-control totalPrice" min="0"
-                                                        id="totalPrice_0" value="0" required>
+                                                        id="totalPrice_0" value="0" >
                                                 </div>
                                                 <div>
                                                     <input type="number" class="form-control discount" min="0" value="0"
-                                                        id="discount_0" required>
+                                                        id="discount_0" >
                                                 </div>
                                                 <div>
                                                     <input type="number" class="form-control netPrice" min="0" value="0"
-                                                        id="netPrice_0" required>
+                                                        id="netPrice_0" >
                                                 </div>
                                             </div>
 
@@ -386,7 +387,8 @@
                                                 Subtotal
                                             </span>
                                             <span>
-                                                0.00
+                                               <span id="subTotalVaue">0</span>.00
+                                               <input type="text" id="subTotalVaueInput" name="subTotal" value="0" class="addTaxFieldGNinoice" style="display: none;">
                                             </span>
                                         </div>
                                         <div>
@@ -394,7 +396,7 @@
                                                 Tax
                                             </span>
                                             <span>
-                                                0.00
+                                                <input class="addTaxFieldGNinoice" min="0" type="number" name="tax" value="0" id="addTax" >
                                             </span>
                                         </div>
                                         <div>
@@ -402,7 +404,8 @@
                                                 Total
                                             </span>
                                             <span>
-                                                0.00
+                                                <span id="totalSummary">0</span>.00
+                                                <input type="text" id="totalSummaryInput" name="total" value="0" class="addTaxFieldGNinoice" style="display: none;">
                                             </span>
                                         </div>
                                         <div>
@@ -410,7 +413,8 @@
                                                 Balance Due
                                             </span>
                                             <span>
-                                                0.00
+                                                <span id="balanceDue">0</span>.00
+                                                <input type="text" id="balanceDueInput" name="dueBalance" value="0" class="addTaxFieldGNinoice" style="display: none;">
                                             </span>
                                         </div>
                                     </div>
@@ -423,9 +427,9 @@
                                         <div class="uploadLogoBox">
                                             <img id="output2" />
                                         </div>
-                                        <label>Upload Logo
-                                            <input type="file" accept="image/*" name="image" id="imgfile"
-                                                onchange="loadFile2(event)" style="display:none;">
+                                        <label>Upload Signature
+                                            <input type="file" accept="image/*" name="uploadSignature" id="uploadSignature"
+                                                onchange="loadFile2(event)" style="display:none;" required>
                                         </label>
                                     </div>
 
@@ -477,6 +481,8 @@
 <script>
 
 
+$(document).ready(function() {
+    
 
         function addItemsInList() {
             var aryData = sessionStorage.getItem('itemAry')
@@ -484,6 +490,8 @@
 
             if (aryData) {
                
+                document.getElementById('AllsessionData').value = JSON.stringify(aryData)
+
                 var invoiceItemsTable = document.getElementsByClassName('invoiceItemInnerTables2')[0]
                 
                 
@@ -522,7 +530,7 @@
                                             <button type="button"  class="btn btn-danger dltItem" id="dltItem_${index}">x</button>
                                         </div>
                                         <div class="dextitlelBox">
-                                            <textarea class="form-control item_description"
+                                            <textarea class="form-control item_description" 
                                              style="resize: none;" required>${item.itemDes_0}</textarea>
                                         </div>
                                         <div>
@@ -570,7 +578,7 @@
                 var totalPrice_0 = document.getElementById('totalPrice_0').value;
                 var discount_0 = document.getElementById('discount_0').value;
                 var netPrice_0 = document.getElementById('netPrice_0').value;
-
+                console.log(netPrice_0)
                 var itemOBject = "";
 
                     if (itemDes_0 != "" && itemQty_0 != "" && itemUnitePrice_0 != "" && totalPrice_0 != "" && discount_0 != "" && netPrice_0 != "") {
@@ -608,6 +616,8 @@
                        document.getElementById('netPrice_0').value = "";
                         
                       addItemsInList()
+                      deleteItem()
+                      itemsSummary()
                     }
                    
             })
@@ -623,8 +633,8 @@
         var dltItem = document.getElementsByClassName('dltItem')
         dltItem = Array.from(dltItem)
         dltItem.forEach(function (btn,index) {
-            console.log(index)
             var deleteBtn = document.getElementById(`dltItem_${index}`)
+            
             deleteBtn.addEventListener('click', function(){
                 var ary = sessionStorage.getItem('itemAry')
                 ary = JSON.parse(ary)
@@ -634,17 +644,165 @@
               
                 sessionStorage.setItem('itemAry',JSON.stringify(ary))
                 addItemsInList()
+                deleteItem()
+                itemsSummary()
             })
             
         });
 
     }
-    setInterval(function () {
+    
         deleteItem()
-    },500)
+  
   
 
 
+
+
+    // getting ItemValue  and calculatingIt
+    function calculateItemPrice() {
+
+        var itemQty_0 = document.getElementById('itemQty_0');
+        var itemUnitePrice_0 = document.getElementById('itemUnitePrice_0');
+        var totalPrice_0 = document.getElementById('totalPrice_0')
+        var netPrice_0 = document.getElementById('netPrice_0')
+        
+        itemUnitePrice_0.addEventListener('input',function() {
+            console.log(itemUnitePrice_0.value)
+            if(itemQty_0.value == ""){
+                itemQty_0.value = 1
+            }
+
+            total = itemQty_0.value * itemUnitePrice_0.value
+            totalPrice_0.value = total
+            netPrice_0.value = totalPrice_0.value
+        })
+
+        itemQty_0.addEventListener('input',function() {
+            var itemQty_0 = document.getElementById('itemQty_0');
+            var itemUnitePrice_0 = document.getElementById('itemUnitePrice_0');
+            var totalPrice_0 = document.getElementById('totalPrice_0')
+            var netPrice_0 = document.getElementById('netPrice_0')
+            
+
+            total = itemUnitePrice_0.value * itemQty_0.value;
+            if(total != 0){
+                totalPrice_0.value = total
+                netPrice_0.value = totalPrice_0.value 
+            }
+            
+        })
+
+
+        // net price
+
+        var discount_0 = document.getElementById('discount_0');
+        discount_0.addEventListener('input', function () {
+            var netPrice_0 = document.getElementById('netPrice_0');
+            var totalPrice_0 = document.getElementById('totalPrice_0')
+            var discount = totalPrice_0.value - discount_0.value;
+            netPrice_0.value = discount
+        })
+
+
+    
+
+
+
+
+
+    }
+    calculateItemPrice()
+
+
+
+
+    
+
+    // adding subTotal to of all items
+    function itemsSummary() {
+        var aryItems = sessionStorage.getItem('itemAry')
+        aryItems = JSON.parse(aryItems);
+
+        if(aryItems){
+            var subTotalPrice = 0;
+            aryItems.forEach(function(item,index) {
+                var total = parseInt(item.netPrice_0)
+                subTotalPrice +=total
+            })
+            
+            document.getElementById('subTotalVaue').innerText = subTotalPrice
+            $('#subTotalVaueInput').val(subTotalPrice)
+            document.getElementById('balanceDue').innerText = subTotalPrice;
+            $('#balanceDueInput').val(subTotalPrice)
+            document.getElementById('totalSummary').innerText = subTotalPrice;
+            $('#totalSummaryInput').val(subTotalPrice)
+            document.getElementById('subTotalVaue').innerText = subTotalPrice;
+        }
+
+
+        // summary items prciess
+        var addTax = document.getElementById('addTax');
+        addTax.addEventListener('input', function () {
+
+        var balanceDue = document.getElementById('balanceDue');
+        var totalSummary = document.getElementById('totalSummary');
+        var subTotalVaue = document.getElementById('subTotalVaue')
+
+           
+            var subValue = parseInt(subTotalVaue.innerText)
+            var tax = parseInt(addTax.value)
+            var total = subValue+tax
+            totalSummary.innerText = total;
+            $('#totalSummaryInput').val(total)
+            balanceDue.innerText = total
+            $('#balanceDueInput').val(total)
+        })
+        // Nabi
+
+    }
+    itemsSummary()
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // when from sumite than clear sessiosn storage
+    $(".generate_invoiceBtn").click(function(){
+        sessionStorage.removeItem('itemAry')
+    })
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+})//jquery ends
 
 
 
@@ -659,6 +817,7 @@
     };
 
     var loadFile2 = function (event) {
+      
         var image = document.getElementById('output2');
         image.src = URL.createObjectURL(event.target.files[0]);
         console.log(event.target.files[0])

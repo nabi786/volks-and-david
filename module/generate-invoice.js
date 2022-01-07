@@ -5,70 +5,94 @@ var generateInvoice = new mongoose.Schema({
         type : String,
         required : true,
     },
-    Name : {
+    OwnName : {
         type : String,
         required : true,
     },
-    Address : {
-        type : String,
-        required : true
-    },
-    Email : {
+    OwnEmail : {
         type : String,
         required : true,
     },
-    Phone : {
+    OwnAddress : {
         type : String,
         required : true
     },
+    OwnPhone : {
+        type : String,
+        required : true
+    },
+    ToName : {
+        type : String,
+        required : true,
+    },
+    ToEmail : {
+        type : String,
+        required : true,
+    },
+    ToAddress : {
+        type : String,
+        required : true
+    },
+    ToPhone : {
+        type : String,
+        required : true
+    },
+
     NTNNumber :{
         type : String,
-        required : true
+       
     },
     InvoiceNo : {
         type : String,
-        required : true
+       
     },
     INCNumber : {
         type : String,
-        required : true
+       
     },
     date : {
         type : String,
-        required : true
+        
     },
     InvoiceItem: {
         type : String,
-        required : true
+       
     },
     SubTotal : {
         type : String,
-        required : true
+      
     },
     Tax : {
         type : String,
-        require : true
+        
     },
     GrandTotal : {
         type : String,
-        required : true
-    },
-    AmountInWords : {
-        type : String,
-        require : true
+       
     },
 
+    DueBalance : {
+        type : String,
+        
+    },
     Payment_Method : {
         type : String,
-        require : true
+       
     },
     Account_Title : {
         type : String,
-        require : true
+        
     },
     Account_Number : {
         type : String,
-        require : true
+        
+    },
+    
+    companyLogo : {
+        type : String
+    },
+    signature : {
+        type : String
     }
     
 });

@@ -4,6 +4,9 @@ var router = express.Router();
 var generateInvoice = require('../module/generate-invoice');
 var customersModel = require('../module/create-customer');
 var userModel = require('../module/userSign-up');
+const multer = require('multer')
+var path = require('path')
+
 
 
 /* GET home page. */
@@ -13,8 +16,9 @@ router.get('/', async function (req, res, next) {
 
     // searching cookie data
     var cookeData = req.cookies.jwt;
-    
-    
+
+  
+
 
     customersModel.find().exec(async function (err, data) {
       try {
@@ -28,21 +32,21 @@ router.get('/', async function (req, res, next) {
 
           var currentUser = await userModel.findOne({ _id: cookeData });
 
-          if(currentUser.approve == "false"){
+          if (currentUser.approve == "false") {
             res.redirect('/authentication')
-          }else{
+          } else {
 
             var allusers = await userModel.find();
 
             var notApprovedUser = []
-            for(var x =0; x < allusers.length; x++){
-              if(allusers[x].approve == "false"){
+            for (var x = 0; x < allusers.length; x++) {
+              if (allusers[x].approve == "false") {
                 notApprovedUser.push(allusers[x])
               }
             }
-            
 
-            res.render('generate-invoice', { userDetial: "", customerList: customerList, currentUser: currentUser, notApprovedUser: notApprovedUser.length});
+
+            res.render('generate-invoice', { userDetial: "", customerList: customerList, currentUser: currentUser, notApprovedUser: notApprovedUser.length });
           }
 
 
@@ -62,11 +66,94 @@ router.get('/', async function (req, res, next) {
 
 });
 
-router.post('/', async function (req, res, next) {
+
+
+  // upload logo 
+  const storage = multer.diskStorage({
+    destination: './public/uploads',
+    filename: (req, file, cb) => {
+
+      cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+    }
+  });
+
+  var uploads = multer({ storage: storage });
+  var uploadMultiple = uploads.fields([{ name: 'uploadLogofile', maxCount: 1 }, { name: 'uploadSignature', maxCount: 1 }])
+
+
+router.post('/',uploadMultiple, async function (req, res, next) {
 
   try {
 
-    
+
+      var logo = ""
+      var signature = ""
+      if(req.files){
+
+        logo =  req.files.uploadLogofile[0].filename;
+        signature = req.files.uploadSignature[0].filename;
+
+      }
+      
+      var userIDfromCookie = req.cookies.jwt;
+      
+      var ivoiceItems = []
+      if(req.body.ItemList){
+         ivoiceItems = req.body.ItemList
+      }
+
+      var ntn = ""
+      if(req.body.ntn){
+        ntn = req.body.ntn
+      }
+
+      var incNo = ""
+      if(req.body.inc){
+        incNo = req.body.inc
+      }
+
+      
+      var gnrateInvoice = new generateInvoice({
+      userID : userIDfromCookie,
+      OwnName : req.body.cname,
+      OwnEmail : req.body.cemail,
+      OwnAddress : req.body.caddress,
+      OwnPhone :req.body.cphone,
+      ToName : req.body.toname,
+      ToEmail : req.body.toemail,
+      ToAddress : req.body.toaddress,
+      ToPhone : req.body.tophone,
+      NTNNumber :ntn,
+      InvoiceNo : req.body.invoiceNo, 
+      INCNumber : incNo,
+      date : req.body.date, 
+      InvoiceItem: ivoiceItems,
+      SubTotal : req.body.subTotal,
+      Tax : req.body.tax,
+      GrandTotal : req.body.total,
+      DueBalance: req.body.dueBalance,
+      Payment_Method : req.body.payment_method,
+      Account_Title :req.body.account_title,
+      Account_Number : req.body.account_no,
+      companyLogo :  logo,
+      signature : signature
+      }) 
+
+
+      gnrateInvoice.save(function(err,data){
+        if(err) throw err
+
+      })
+      res.redirect('generate-invoice')
+
+        
+      
+     
+
+      
+      
+
+     
 
 
   } catch (error) {
@@ -78,36 +165,9 @@ router.post('/', async function (req, res, next) {
 
 
 
-// generate invocie from cutomers list 
-router.get('/:id', async function (req, res, next) {
-  // try {
 
-  //   var userID = req.params.id;
 
-  //   var userDetial = await customersModel.findOne({ _id: userID });
-  //   var customerList = await customersModel.find();
-    
 
-  //   var currentUser = await userModel.findOne({_id : req.cookies.jwt})
-  //     // console.log(currentUser)
-
-  //     var allusers = await userModel.find();
-
-  //     var notApprovedUser = []
-  //     for(var x =0; x < allusers.length; x++){
-  //       if(allusers[x].approve == "false"){
-  //         notApprovedUser.push(allusers[x])
-  //       }
-  //     }
-
-  //   res.render('generate-invoice', { userDetial: userDetial, customerList: customerList, currentUser : currentUser,notApprovedUser : notApprovedUser.length});
-    
-
-  // } catch (error) {
-
-  // }
-
-})
 
 
 

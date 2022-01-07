@@ -39,7 +39,7 @@ router.get('/:name/:id', async function (req, res, next) {
             notApprovedUser.push(allusers[x])
           }
         }
-        console.log(currentInvoice)
+        // console.log(currentInvoice)
         res.render('invoice', {InvoiceItem : invoiceData, currentInvoice : currentInvoice, currentUser : currentUser, notApprovedUser:notApprovedUser.length});
       
     }else{
