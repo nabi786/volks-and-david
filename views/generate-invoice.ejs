@@ -144,7 +144,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input id="cphone" name="cphone" class="form-control" type="number"
+                                                <input id="cphone" name="cphone" class="form-control " type="text"
                                                     placeholder="03423597555" required>
                                             </div>
                                         </div>
@@ -198,7 +198,7 @@
                                                 </label>
                                             </div>
                                             <div class="col-lg-9 col-sm-9 col-md-9" style="margin-left: auto;">
-                                                <input id="tophone" name="tophone" class="form-control" type="number"
+                                                <input id="tophone" name="tophone" class="form-control" type="text"
                                                     placeholder="0342355592" required>
                                             </div>
                                         </div>
@@ -359,8 +359,8 @@
 
                                                 </div>
                                                 <div>
-                                                    <input type="number" class="form-control totalPrice" min="0"
-                                                        id="totalPrice_0" value="0" >
+                                                    <input type="number" class="form-control totalPrice " min="0"
+                                                        id="totalPrice_0" value="0" readonly>
                                                 </div>
                                                 <div>
                                                     <input type="number" class="form-control discount" min="0" value="0"
@@ -368,7 +368,7 @@
                                                 </div>
                                                 <div>
                                                     <input type="number" class="form-control netPrice" min="0" value="0"
-                                                        id="netPrice_0" >
+                                                        id="netPrice_0" readonly>
                                                 </div>
                                             </div>
 
@@ -414,7 +414,7 @@
                                             </span>
                                             <span>
                                                 <span id="balanceDue">0</span>.00
-                                                <input type="text" id="balanceDueInput" name="dueBalance" value="0" class="addTaxFieldGNinoice" style="display: none;">
+                                                <input type="text" id="balanceDueInput" name="dueBalance" value="0" class="addTaxFieldGNinoice"  style="display: none;">
                                             </span>
                                         </div>
                                     </div>
@@ -532,27 +532,27 @@ $(document).ready(function() {
                                             </div>
                                             <div class="dextitlelBox">
                                                 <textarea class="form-control item_description" 
-                                                style="resize: none;" required>${item.itemDes_0}</textarea>
+                                                style="resize: none;" readonly>${item.itemDes_0}</textarea>
                                             </div>
                                             <div>
-                                                <input  type="number" value="${item.itemQty_0}" class="form-control qty" min="0" required>
+                                                <input  type="number" value="${item.itemQty_0}" class="form-control qty" min="0" readonly>
                                             </div>
                                             <div>
                                                 <input type="number" class="form-control unitPrice" min="0"
-                                                value="${item.itemUnitePrice_0}" required>
+                                                value="${item.itemUnitePrice_0}"  readonly>
 
                                             </div>
                                             <div>
                                                 <input type="number" class="form-control totalPrice" min="0"
-                                                value="${item.totalPrice_0}" required>
+                                                value="${item.totalPrice_0}" readonly>
                                             </div>
                                             <div>
                                                 <input type="number" class="form-control discount" min="0" 
-                                                value="${item.discount_0}" required>
+                                                value="${item.discount_0}" readonly>
                                             </div>
                                             <div>
                                                 <input type="number" class="form-control netPrice" min="0" 
-                                                value="${item.netPrice_0}" required>
+                                                value="${item.netPrice_0}" readonly>
                                             </div>
                                         </div>
 
@@ -628,6 +628,7 @@ $(document).ready(function() {
                     
                        addItemsInList()
                        deleteItem()
+                       
                         
                     }
                    
@@ -661,7 +662,7 @@ $(document).ready(function() {
                 
                 addItemsInList()
                 itemsSummary()
-
+                itemsSummary()
             })
             
         });
@@ -684,7 +685,7 @@ $(document).ready(function() {
         var netPrice_0 = document.getElementById('netPrice_0')
         
         itemUnitePrice_0.addEventListener('input',function() {
-            console.log(itemUnitePrice_0.value)
+            
             if(itemQty_0.value == ""){
                 itemQty_0.value = 1
             }
@@ -692,6 +693,7 @@ $(document).ready(function() {
             total = itemQty_0.value * itemUnitePrice_0.value
             totalPrice_0.value = total
             netPrice_0.value = totalPrice_0.value
+            itemsSummary()
         })
 
         itemQty_0.addEventListener('input',function() {
@@ -700,11 +702,12 @@ $(document).ready(function() {
             var totalPrice_0 = document.getElementById('totalPrice_0')
             var netPrice_0 = document.getElementById('netPrice_0')
             
-
+            
             total = itemUnitePrice_0.value * itemQty_0.value;
             if(total != 0){
                 totalPrice_0.value = total
                 netPrice_0.value = totalPrice_0.value 
+                itemsSummary()
             }
             
         })
@@ -718,6 +721,7 @@ $(document).ready(function() {
             var totalPrice_0 = document.getElementById('totalPrice_0')
             var discount = totalPrice_0.value - discount_0.value;
             netPrice_0.value = discount
+            itemsSummary()
         })
 
 
@@ -737,44 +741,45 @@ $(document).ready(function() {
 
     // adding subTotal to of all items
     function itemsSummary() {
-        var aryItems = sessionStorage.getItem('itemAry')
-        aryItems = JSON.parse(aryItems);
+        var netPrice = document.getElementsByClassName('netPrice')
+        netPrice = Array.from(netPrice)
 
-        if(aryItems){
-            var subTotalPrice = 0;
-            aryItems.forEach(function(item,index) {
-                var total = parseInt(item.netPrice_0)
-                subTotalPrice +=total
-            })
-            
-            document.getElementById('subTotalVaue').innerText = subTotalPrice
-            $('#subTotalVaueInput').val(subTotalPrice)
-            document.getElementById('balanceDue').innerText = subTotalPrice;
-            $('#balanceDueInput').val(subTotalPrice)
-            document.getElementById('totalSummary').innerText = subTotalPrice;
-            $('#totalSummaryInput').val(subTotalPrice)
-            document.getElementById('subTotalVaue').innerText = subTotalPrice;
-        }
-
-
-        // summary items prciess
-        var addTax = document.getElementById('addTax');
-        addTax.addEventListener('input', function () {
-
-        var balanceDue = document.getElementById('balanceDue');
-        var totalSummary = document.getElementById('totalSummary');
-        var subTotalVaue = document.getElementById('subTotalVaue')
-
-           
-            var subValue = parseInt(subTotalVaue.innerText)
-            var tax = parseInt(addTax.value)
-            var total = subValue+tax
-            totalSummary.innerText = total;
-            $('#totalSummaryInput').val(total)
-            balanceDue.innerText = total
-            $('#balanceDueInput').val(total)
+        var subTotal = 0
+        netPrice.forEach(function(elm,index) {
+            var elm = parseInt(elm.value)
+            subTotal+= elm
         })
-        // Nabi
+
+        document.getElementById('subTotalVaue').innerText = subTotal;
+        document.getElementById('subTotalVaueInput').value = subTotal;
+        
+        var addTax = document.getElementById('addTax');
+        var addTaxPrice = parseInt(addTax.value)
+        
+        document.getElementById('totalSummary').innerText = subTotal + addTaxPrice;
+        document.getElementById('totalSummaryInput').value = subTotal + addTaxPrice
+
+        
+        document.getElementById('balanceDue').innerText = subTotal + addTaxPrice;
+        document.getElementById('balanceDueInput').value = subTotal + addTaxPrice;
+
+
+        addTax.addEventListener('input', function() {
+            var newTax = parseInt(addTax.value)
+
+            document.getElementById('totalSummary').innerText = newTax + subTotal;
+            document.getElementById('totalSummaryInput').value = newTax + subTotal
+            document.getElementById('balanceDue').innerText = newTax + subTotal;
+            document.getElementById('balanceDueInput').value = newTax + subTotal;
+
+        })
+        addTax.addEventListener('blur', function() {
+           if(addTax.value == ""){
+            addTax.value = 0
+            document.getElementById('totalSummary').innerText = subTotal ;
+            document.getElementById('balanceDue').innerText = subTotal ;
+           }
+        })
 
     }
     itemsSummary()

@@ -168,6 +168,15 @@ router.post('/',uploadMultiple, async function (req, res, next) {
 
 
 
+router.post('/:id', async function (req, res, next) {
+
+    res.send('working')
+  
+
+})
+
+
+
 
 
 
