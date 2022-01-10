@@ -485,16 +485,15 @@ $(document).ready(function() {
     
 
         function addItemsInList() {
+
             var aryData = sessionStorage.getItem('itemAry')
-            aryData = JSON.parse(aryData);
-
-            if (aryData) {
-               
+            var invoiceItemsTable = document.getElementsByClassName('invoiceItemInnerTables2')[0]
+            
+            if (aryData != "[]") {
+                aryData = JSON.parse(aryData);
+           
                 document.getElementById('AllsessionData').value = JSON.stringify(aryData)
-
-                var invoiceItemsTable = document.getElementsByClassName('invoiceItemInnerTables2')[0]
-                
-                
+     
                 var html="";
                 aryData.forEach(function (item, index) {
                     html += `<div class="invoiceItemInnerTables" id="invoiceItemInnerTables_${index}">
@@ -558,27 +557,34 @@ $(document).ready(function() {
                                 </div>
                                 </div>` ;
 
-                invoiceItemsTable.innerHTML = html 
+                invoiceItemsTable.innerHTML = html ;
+
                 })
+                deleteItem()
                 
+
+                
+            }else{
+              
+                invoiceItemsTable.innerHTML = "";
+
             }
         }
 
        addItemsInList()
     
 
-
             var addMoreInvoice = document.getElementById('addMoreInvoice');
 
             addMoreInvoice.addEventListener('click', function (){
-                   
+                
                 var itemDes_0 = document.getElementById('itemDes_0').value;
                 var itemQty_0 = document.getElementById('itemQty_0').value;
                 var itemUnitePrice_0 = document.getElementById('itemUnitePrice_0').value;
                 var totalPrice_0 = document.getElementById('totalPrice_0').value;
                 var discount_0 = document.getElementById('discount_0').value;
                 var netPrice_0 = document.getElementById('netPrice_0').value;
-                console.log(netPrice_0)
+                
                 var itemOBject = "";
 
                     if (itemDes_0 != "" && itemQty_0 != "" && itemUnitePrice_0 != "" && totalPrice_0 != "" && discount_0 != "" && netPrice_0 != "") {
@@ -594,30 +600,30 @@ $(document).ready(function() {
 
                    
                         var localAry = sessionStorage.getItem('itemAry');
-                        if (localAry == null) {
-                            
-                            var ary = []
+                       
+                       
+                        if(localAry == null){
+                            itemAry = []
+    
                         }else{
-                            
-                            var ary = JSON.parse(localAry)
-                            console.log(ary)
+                            itemAry = JSON.parse(localAry)
+                        
                         }
-                  
-                        ary.push(itemOBject)
-                        ary.reverse()
-                        sessionStorage.setItem('itemAry', JSON.stringify(ary));
-
-                        
+                       
+                        itemAry.unshift(itemOBject)
+                        sessionStorage.setItem('itemAry', JSON.stringify(itemAry));
+                    
                          document.getElementById('itemDes_0').value = "";
-                        document.getElementById('itemQty_0').value = "";
-                        document.getElementById('itemUnitePrice_0').value = "";
-                        document.getElementById('totalPrice_0').value = "";
-                        document.getElementById('discount_0').value = "";
-                       document.getElementById('netPrice_0').value = "";
+                        document.getElementById('itemQty_0').value = "0";
+                        document.getElementById('itemUnitePrice_0').value = "0";
+                        document.getElementById('totalPrice_0').value = "0";
+                        document.getElementById('discount_0').value = "0";
+                       document.getElementById('netPrice_0').value = "0";
+                    
+                    
+                       addItemsInList()
+                       deleteItem()
                         
-                      addItemsInList()
-                      deleteItem()
-                      itemsSummary()
                     }
                    
             })
@@ -632,20 +638,25 @@ $(document).ready(function() {
         
         var dltItem = document.getElementsByClassName('dltItem')
         dltItem = Array.from(dltItem)
+        var ary = sessionStorage.getItem('itemAry')
+
         dltItem.forEach(function (btn,index) {
+            
             var deleteBtn = document.getElementById(`dltItem_${index}`)
             
             deleteBtn.addEventListener('click', function(){
-                var ary = sessionStorage.getItem('itemAry')
+
                 ary = JSON.parse(ary)
                 console.log('working')
                 ary.splice(index,1);
                 console.log(ary)
               
                 sessionStorage.setItem('itemAry',JSON.stringify(ary))
+                
+                
                 addItemsInList()
-                deleteItem()
                 itemsSummary()
+
             })
             
         });
