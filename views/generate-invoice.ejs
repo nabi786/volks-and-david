@@ -489,86 +489,91 @@ $(document).ready(function() {
             var aryData = sessionStorage.getItem('itemAry')
             var invoiceItemsTable = document.getElementsByClassName('invoiceItemInnerTables2')[0]
             
-            if (aryData != "[]") {
-                aryData = JSON.parse(aryData);
-           
-                document.getElementById('AllsessionData').value = JSON.stringify(aryData)
-     
-                var html="";
-                aryData.forEach(function (item, index) {
-                    html += `<div class="invoiceItemInnerTables" id="invoiceItemInnerTables_${index}">
-                                <div class="invoiceItemTableHeadering">
-                                    <div class="addInvocieItemBtnList">
-                                        <span style="visibility: hidden;">delet</span>
-                                    </div>
-                                    <div class="dextitlelBox">
-                                        Description
-                                    </div>
-                                    <div>
-                                        Qty
-                                    </div>
-                                    <div>
-                                        Unit Price
-                                    </div>
-                                    <div>
-                                        Total Price
-                                    </div>
-                                    <div>
-                                        Discount
-                                    </div>
-                                    <div>
-                                        Net Price
-                                    </div>
-                                </div>
+            if(aryData != null){
 
-                                <div class="generateInvoicetableBody">
-
-                                    <div class="invoiceItemTableHeadering invoiceItemTextFields"
-                                        id="invoiceItemTextFields_${index}">
-                                        <div class="addInvocieItemBtnList dltInvoiceItemBox">
-                                            <button type="button"  class="btn btn-danger dltItem" id="dltItem_${index}">x</button>
+                if (aryData != "[]") {
+                    aryData = JSON.parse(aryData);
+            
+                    document.getElementById('AllsessionData').value = JSON.stringify(aryData)
+        
+                    var html="";
+                    aryData.forEach(function (item, index) {
+                        html += `<div class="invoiceItemInnerTables" id="invoiceItemInnerTables_${index}">
+                                    <div class="invoiceItemTableHeadering">
+                                        <div class="addInvocieItemBtnList">
+                                            <span style="visibility: hidden;">delet</span>
                                         </div>
                                         <div class="dextitlelBox">
-                                            <textarea class="form-control item_description" 
-                                             style="resize: none;" required>${item.itemDes_0}</textarea>
+                                            Description
                                         </div>
                                         <div>
-                                            <input  type="number" value="${item.itemQty_0}" class="form-control qty" min="0" required>
+                                            Qty
                                         </div>
                                         <div>
-                                            <input type="number" class="form-control unitPrice" min="0"
-                                            value="${item.itemUnitePrice_0}" required>
-
+                                            Unit Price
                                         </div>
                                         <div>
-                                            <input type="number" class="form-control totalPrice" min="0"
-                                             value="${item.totalPrice_0}" required>
+                                            Total Price
                                         </div>
                                         <div>
-                                            <input type="number" class="form-control discount" min="0" 
-                                            value="${item.discount_0}" required>
+                                            Discount
                                         </div>
                                         <div>
-                                            <input type="number" class="form-control netPrice" min="0" 
-                                             value="${item.netPrice_0}" required>
+                                            Net Price
                                         </div>
                                     </div>
 
-                                </div>
-                                </div>` ;
+                                    <div class="generateInvoicetableBody">
 
-                invoiceItemsTable.innerHTML = html ;
+                                        <div class="invoiceItemTableHeadering invoiceItemTextFields"
+                                            id="invoiceItemTextFields_${index}">
+                                            <div class="addInvocieItemBtnList dltInvoiceItemBox">
+                                                <button type="button"  class="btn btn-danger dltItem" id="dltItem_${index}">x</button>
+                                            </div>
+                                            <div class="dextitlelBox">
+                                                <textarea class="form-control item_description" 
+                                                style="resize: none;" required>${item.itemDes_0}</textarea>
+                                            </div>
+                                            <div>
+                                                <input  type="number" value="${item.itemQty_0}" class="form-control qty" min="0" required>
+                                            </div>
+                                            <div>
+                                                <input type="number" class="form-control unitPrice" min="0"
+                                                value="${item.itemUnitePrice_0}" required>
 
-                })
-                deleteItem()
+                                            </div>
+                                            <div>
+                                                <input type="number" class="form-control totalPrice" min="0"
+                                                value="${item.totalPrice_0}" required>
+                                            </div>
+                                            <div>
+                                                <input type="number" class="form-control discount" min="0" 
+                                                value="${item.discount_0}" required>
+                                            </div>
+                                            <div>
+                                                <input type="number" class="form-control netPrice" min="0" 
+                                                value="${item.netPrice_0}" required>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    </div>` ;
+
+                    invoiceItemsTable.innerHTML = html ;
+
+                    })
+                    deleteItem()
+                    
+
+                    
+                }else{
                 
+                    invoiceItemsTable.innerHTML = "";
 
-                
+                }
             }else{
-              
                 invoiceItemsTable.innerHTML = "";
-
-            }
+            }            
         }
 
        addItemsInList()
